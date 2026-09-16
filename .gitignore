@@ -1,0 +1,9 @@
+# Agent keys, never committed
+.env.agents
+.env*
+
+node_modules/
+.DS_Store
+
+# Screenshots and generated assets are not ignored on purpose: a skill may
+# ship reference images later.
