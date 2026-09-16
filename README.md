@@ -3,7 +3,7 @@
 A design process for Claude Code, for any surface a person will look at: an app
 screen, a landing page, a dashboard, an internal tool, a report. It runs a
 separate critic that sees only a screenshot, never the code, so the agent is not
-grading its own work. It has three cost tiers, from a ten-cent spot check that
+grading its own work. It has three cost tiers, from a three-cent spot check that
 runs after any UI change to a full redesign with seeded directions. When the
 design has inspiration images, one strong model writes a cached reference brief
 once and every critic reads that text instead of the pictures. Every design keeps
@@ -155,7 +155,7 @@ reading before using it. This README does not repeat it.
 
 ## Credits
 
-The framework, the four principles, and several of the worked examples come from
+The framework and the four principles come from
 Anshu Chimala's ["How to turn your AI into a world-class
 designer"](https://www.lennysnewsletter.com/p/how-to-turn-your-ai-into-a-world).
 Read it first; this skill is an implementation of it with a measured critic
