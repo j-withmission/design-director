@@ -1,0 +1,28 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+html,body{margin:0;width:1280px;height:640px;overflow:hidden}
+body{background:#0E0F11;color:#F2F0EA;font-family:"DIN Alternate","Avenir Next Condensed",sans-serif}
+.wrap{position:absolute;inset:64px 72px}
+h1{margin:0;font:700 104px/0.9 "DIN Condensed","Avenir Next Condensed",sans-serif;letter-spacing:.01em;text-transform:uppercase}
+.sub{margin-top:18px;font:500 26px/1.25 "Avenir Next",sans-serif;color:#B9B7B0;max-width:640px}
+.board{position:absolute;left:0;bottom:0;display:flex;gap:18px;align-items:flex-end}
+.cell{display:flex;flex-direction:column;gap:10px;align-items:center}
+.flap{width:118px;height:156px;background:linear-gradient(#1D1F24 50%,#16181C 50%);border-radius:6px;position:relative;display:grid;place-items:center;font:700 128px/1 "DIN Condensed",sans-serif;color:#F2F0EA;padding-top:14px;box-sizing:border-box}
+.flap::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:#0E0F11}
+.cap{font:600 13px "Avenir Next",sans-serif;letter-spacing:.18em;color:#8A8883}
+.sep{width:2px;height:156px;background:#2A2C31;margin:0 22px 23px}
+.med .flap{width:150px;color:#F26A1B}
+.med .cap{color:#F26A1B}
+.foot{position:absolute;right:0;bottom:23px;text-align:right;font:500 16px/1.6 "Avenir Next",sans-serif;color:#8A8883}
+.foot b{color:#F2F0EA;font-weight:600}
+</style></head><body><div class="wrap">
+<h1>design-director</h1>
+<div class="sub">Three critics read one screenshot. The median decides the next round.</div>
+<div class="board">
+ <div class="cell"><div class="flap">6</div><div class="cap">CRITIC 1</div></div>
+ <div class="cell"><div class="flap">7</div><div class="cap">CRITIC 2</div></div>
+ <div class="cell"><div class="flap">7</div><div class="cap">CRITIC 3</div></div>
+ <div class="sep"></div>
+ <div class="cell med"><div class="flap">7</div><div class="cap">MEDIAN</div></div>
+</div>
+<div class="foot"><b>A design process for Claude Code</b><br>github.com/j-withmission/design-director</div>
+</div></body></html>
