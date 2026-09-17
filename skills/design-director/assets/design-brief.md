@@ -43,7 +43,11 @@ never sees them; it sees the brief written from them
 
 Brief: `docs/design/briefs/[slug].md` · source: images | current page | both | declined · palette: code (`[file]`) | images · model: · date: · hash:
 
-Regenerating the brief (new images) starts a new baseline; scores across
+Kept elements (confirmed by the owner, passed to the brief writer):
+
+-
+
+Regenerating the brief (new images, palette or kept elements) starts a new baseline; scores across
 briefs are not comparable.
 
 ## Baseline

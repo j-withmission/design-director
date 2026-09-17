@@ -92,6 +92,18 @@ How the block is used depends on the source:
 No palette in code (a new project, or a one-off artifact): delete the block
 and the brief reads colors from the images as before.
 
+## Elements the owner keeps
+
+A brief read from the current page will sometimes call a deliberate
+element a defect: a watermark, an accent used at rest, an unusual label. On
+2026-09-17 a site brief ruled out its own tree watermark and its clay
+numerals, and every page failed two rules for it. When the owner confirms
+that an element is part of the identity, list it in the
+`[IF KEPT ELEMENTS: ...]` block, one line each, as they described it. The
+brief then treats those elements as fixed and writes rules that allow
+them. Record the list in the design record next to the brief line, and
+regenerate the brief when it changes.
+
 ## Procedure
 
 1. Collect the inspiration set from the source the user chose: one to four
@@ -100,7 +112,8 @@ and the brief reads colors from the images as before.
    any photograph; it is what makes the rules satisfiable. Save them under
    `docs/design/refs/` (or the record's folder).
 2. Collect the code palette (above), and fill or delete the
-   `[IF CODE PALETTE: ...]` block in the prompt.
+   `[IF CODE PALETTE: ...]` block in the prompt. Do the same for the
+   `[IF KEPT ELEMENTS: ...]` block.
 3. Spawn a `fable` subagent (fall back to `opus`, never `sonnet`; the brief
    is read hundreds of times, so its quality is the cheapest place to spend).
    Its instructions begin:
@@ -119,7 +132,8 @@ and the brief reads colors from the images as before.
    hash
    (`shasum -a 256` of the brief text, first 12 characters). Put the path and
    hash in the design record.
-5. Regenerate only when the inspiration set or the code palette changes. A new brief starts a new
+5. Regenerate only when the inspiration set, the code palette, or the kept
+   elements change. A new brief starts a new
    baseline; scores across briefs are not comparable.
 
 Cost: one call, about 60 seconds and $0.35 on `fable`.
@@ -164,6 +178,12 @@ screenshot seems to show a different color, the code value wins.]
 [IF IMAGES ONLY: These are the product's current colors. Keep them unless
 the references clearly call for a change; for each color you replace, say
 so in the Resolution and give the new value.]]
+
+[IF KEPT ELEMENTS: The owner has confirmed these elements are part of the
+identity and stay:
+[ELEMENT LIST, one per line]
+Treat them as settled. Describe them in the read, keep them in the
+resolution and translation, and write no rule that fails them.]
 
 Step 1. Read each image separately on five axes: palette, composition, focus,
 density, light and material. Be concrete: approximate hex values, proportions
