@@ -69,9 +69,15 @@ what the score meant.
 
 ## Install
 
+For every project, install it at the user level with `-g`:
+
 ```
-npx skills add https://github.com/j-withmission/design-director --skill design-director
+npx skills add https://github.com/j-withmission/design-director --skill design-director -g
 ```
+
+Without `-g` it installs into the current project's `.claude/skills/`. The
+CLI asks which agent to install for; add `--agent claude-code --yes` to skip
+the prompts.
 
 Or manually, cloning and symlinking so updates land by pulling:
 
