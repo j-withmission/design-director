@@ -27,12 +27,37 @@ repeats each:
 So: one strong read, fixed for every critic and every round, from a mixed set
 of references when possible.
 
+## Where the inspiration comes from
+
+The brief check in `SKILL.md` asks the user for one of three sources:
+
+- **Inspiration images** the user supplies. Copy them into
+  `docs/design/refs/`; download URLs there first, since the subagent reads
+  files.
+- **The current page.** Shoot it with `scripts/shot.sh <url-or-file>
+  docs/design/refs/<slug>-current.png` at the surface's usual viewport (use
+  `scripts/shoot-auth.mjs` behind a login). Look at the shot yourself first;
+  a broken render makes a broken brief. The screenshot is the whole
+  inspiration set.
+- **Both.** The current-page screenshot plus the user's images, in one set.
+
+When the set includes the current page, fill the `[IF CURRENT PAGE: ...]`
+block in the prompt below with that file's name; otherwise delete the block.
+
+A brief written from the page itself is not what the 2026-09-11 bench
+measured, and it has two known weaknesses. Its rules tend to pass on the
+page they were read from, so the tally starts high and moves little. And on
+a page that already looks generic, it can write the generic defaults down as
+the direction. Offer it for Review, where keeping the identity is the goal;
+for Redesign, steer toward outside images.
+
 ## Procedure
 
-1. Collect the inspiration set: one to four images, any kind (photograph,
-   painting, poster, film still, a product surface). Prefer at least one
-   product surface alongside any photograph; it is what makes the rules
-   satisfiable. Save them under `docs/design/refs/` (or the record's folder).
+1. Collect the inspiration set from the source the user chose: one to four
+   images, any kind (photograph, painting, poster, film still, a product
+   surface, the current page). Prefer at least one product surface alongside
+   any photograph; it is what makes the rules satisfiable. Save them under
+   `docs/design/refs/` (or the record's folder).
 2. Spawn a `fable` subagent (fall back to `opus`, never `sonnet`; the brief
    is read hundreds of times, so its quality is the cheapest place to spend).
    Its instructions begin:
@@ -46,7 +71,8 @@ of references when possible.
 
    followed by the prompt below with the aesthetic sentence filled in.
 3. Save the output verbatim to `docs/design/briefs/<slug>.md` with a header
-   line recording date, model, image file names, and a hash
+   line recording date, model, source (images, current page, or both),
+   image file names, and a hash
    (`shasum -a 256` of the brief text, first 12 characters). Put the path and
    hash in the design record.
 4. Regenerate only when the inspiration set changes. A new brief starts a new
@@ -74,6 +100,15 @@ is still inspiration, not a template to copy.
 
 The surface it will inform is described as:
 [ONE-SENTENCE AESTHETIC STATEMENT]
+
+[IF CURRENT PAGE: One reference, [FILE NAME], is a screenshot of this surface
+as it stands today. Read it for the identity worth keeping: the palette,
+type, composition and material it is reaching for. Do not read its defects
+as the direction. Where it shows generic defaults (centered hero over three
+cards, gradient backdrops, a stock accent color), leave them out of the
+resolution and write rules this screenshot's weakest regions would fail.
+When other references are present, they set where the page is going and the
+screenshot sets what it keeps.]
 
 Step 1. Read each image separately on five axes: palette, composition, focus,
 density, light and material. Be concrete: approximate hex values, proportions

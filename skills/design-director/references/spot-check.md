@@ -26,6 +26,11 @@ if one exists:
 
 ## Procedure
 
+0. **Brief check.** Look for this surface's brief as `SKILL.md` describes.
+   If there is none and the record has no recorded decline, ask the brief
+   question once, write the brief if the user wants one, and log the answer.
+   On an autonomous run, skip the question and note the missing brief in
+   the final message.
 1. Screenshot with `scripts/shot.sh` at the viewport size the surface was
    last shot at. Look at it yourself first; a clipped label or an unloaded
    font is a bug, fix it before spending anything.

@@ -58,7 +58,54 @@ Record the answer in the design record if one is created. If the run is
 autonomous and nobody can answer, default to **Skip** and say so in the final
 message; never default to Redesign.
 
-Only after the answer, continue with the stage router below.
+Only after the answer, continue with the brief check below.
+
+## Brief check: ask only when the brief is missing
+
+The critic, the spot check and the implementer all work best from a
+reference brief (`references/reference-brief.md`). Every run checks whether
+the surface has one. When it does, nothing is asked. Only a missing brief
+triggers the question below.
+
+**Look first.** Before asking the gate question, check whether this surface
+already has a brief: `docs/design/briefs/<slug>.md` (or
+`design/briefs/<slug>.md`), or a `Brief:` line in its design record. This is
+a file check, not a reference read, so it is allowed before the gate. If a
+brief exists, use it and say which one in one line. If the record says the
+user declined a brief for this surface, don't ask again.
+
+**Ask when there is none.** Add a second question to the same
+AskUserQuestion call as the gate, so the user answers both at once:
+
+- Question: "This surface has no inspiration brief. How should I make one?"
+- Options, in this order, dropping the two that use the current page when
+  nothing renders yet (a brand-new surface):
+  1. **Use the current page** — screenshot the surface as it stands and
+     write the brief from it. Keeps the identity the page already has; best
+     for Review. One `fable` call, about $0.35.
+  2. **Current page plus my images** — the screenshot plus one to four
+     inspiration images the user supplies. Pulls the existing page toward a
+     reference; good for either tier.
+  3. **I'll provide inspiration** — one to four images of any kind, as
+     paths, URLs or pasted files. Best for Redesign, where the current page
+     is what is being replaced. Suggest including one product surface.
+  4. **No brief** — the critic runs on the aesthetic sentence alone and the
+     rules tally is skipped. Recorded, so this surface is not asked again.
+
+If the user chose an option with images but did not supply them in the
+answer, ask for them in chat and wait; do not start the tier without them.
+Then write the brief as `references/reference-brief.md` describes, before
+Discover or the first critic round. The answer holds under every tier,
+including Skip: a brief made now is what the spot check reads later.
+
+The spot check, which runs without the gate, does the same look-first check
+and asks the brief question on its own the first time it meets a surface
+with no brief and no recorded decline.
+
+On an autonomous run with nobody to answer, don't ask: continue without a
+brief and say in the final message that the surface has none.
+
+Then continue with the stage router below.
 
 ## Why this skill exists
 
@@ -96,7 +143,7 @@ that already has an identity throws away work.
 |---|---|---|
 | A task changed a screen and is about to report done | Spot check | `references/spot-check.md`, no gate |
 | Spot check escalated, or "make this better" on an existing design | Review | **Define**, with a baseline round first if the record has none |
-| New surface, no stated aesthetic or reference | Redesign | **The reference brief** if inspiration exists, then **Discover** |
+| New surface, no stated aesthetic or reference | Redesign | **The reference brief** from the images the brief check collected, then **Discover** |
 | A direction or brief exists, but the render looks like every AI page | Review | **Define** |
 | The design has a clear identity; the ask is to ship it | Review | **Deliver** |
 | "Retry the rejected prompts", "re-score this", "what did we try" | — | **The design record** (below) |
@@ -111,8 +158,9 @@ describe the infrastructure budget, not the interface.
 
 ## The reference brief
 
-Read `references/reference-brief.md` when the design has inspiration images,
-or when the user hands one over mid-task.
+Read `references/reference-brief.md` when the brief check calls for a brief
+(inspiration images, the current page, or both), or when the user hands over
+inspiration mid-task.
 
 One `fable` pass over the inspiration set writes the reference read, a
 translation into UI terms, and three to five checkable rules. That text is
@@ -290,8 +338,10 @@ In a repo that keeps decision records, design decisions go in `docs/design/`.
 
 ## The spot check
 
-Read `references/spot-check.md`. One `sonnet` call at the end of any task
-that changed a screen, whether or not the skill was otherwise invoked:
+Read `references/spot-check.md`. It starts with the brief check above:
+use the surface's brief, or ask once if it has none and no recorded decline.
+Then one `sonnet` call at the end of any task that changed a screen, whether
+or not the skill was otherwise invoked:
 pairwise against the last screenshot of that surface, the brief's rules
 tally, and at most two nudges. No score. Apply the top nudge if it is a
 one-line change. Escalate to a Review when the pairwise verdict is clearly
@@ -367,6 +417,9 @@ not advisory:
 
 - Don't skip the gate, and don't run Redesign because it seems warranted;
   the user chooses. The spot check is the only thing that runs unasked.
+- Don't skip the brief check, and don't ask when a brief already exists. A
+  surface with no brief gets asked once, and the answer, including "no
+  brief", goes in the record.
 - Don't run more than two implementers at once or launch a Chrome per agent;
   see Resource budget.
 - Don't hand the critic code, diffs, previous critiques, or the inspiration

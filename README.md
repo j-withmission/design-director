@@ -101,6 +101,12 @@ want: Review, Redesign, or Skip. It reads no reference file, runs no script, and
 spawns no subagent until that is answered. On an autonomous run with nobody to
 ask, it defaults to Skip.
 
+**The brief check.** Every run looks for the surface's reference brief. If
+one exists it is used without asking. If it is missing, the gate question
+comes with a second one: build the brief from the current page, from the
+current page plus your inspiration images, from your images alone, or go
+without. A "no brief" answer is recorded so the surface is not asked again.
+
 **The spot check runs unasked.** It is the one thing that does not go through the
 gate, because it is the price of touching a screen: one Sonnet call at the end of
 any task that changed a surface, pairwise against the last screenshot, a rules

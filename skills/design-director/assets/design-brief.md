@@ -41,7 +41,7 @@ never sees them; it sees the brief written from them
 |---|---|---|
 | | | |
 
-Brief: `docs/design/briefs/[slug].md` · model: · date: · hash:
+Brief: `docs/design/briefs/[slug].md` · source: images | current page | both | declined · model: · date: · hash:
 
 Regenerating the brief (new images) starts a new baseline; scores across
 briefs are not comparable.
