@@ -25,9 +25,9 @@ anything else.
 
 | Tier | When | What runs | Model | Stops when | Measured cost |
 |---|---|---|---|---|---|
-| **Spot check** | Any task touched a screen; runs at the end, before "done" | Pairwise against the last shot, rules check against the brief, at most two nudges. No score. | `sonnet` | Always one call | ~10 s, $0.03 |
-| **Review** | A surface's baseline slipped: spot check escalated, or the user says "make this better" / "this looks off" | The critic loop below on the existing direction, three critic repeats per round, median score | `opus` critic, session model implements | Median ≥ baseline + 1, or two rounds without a full point | ~$0.35 and 2 min per round |
-| **Redesign** | New surface, or the user wants the highest score the direction can reach | Reference brief, then Discover diverge (three seeded directions, each scored), then the critic loop to plateau | `fable` brief, `opus` critic, session model implements | Plateau: three rounds without a point, or 9/10 | ~$3–5 for three directions plus four rounds |
+| **Spot check** | Any task touched a screen; runs at the end, before "done" | Pairwise against the last shot, rules check against the brief, at most two nudges. No score. | `sonnet` | Always one call | ~10 s, 0.03 USD |
+| **Review** | A surface's baseline slipped: spot check escalated, or the user says "make this better" / "this looks off" | The critic loop below on the existing direction, three critic repeats per round, median score | `opus` critic, session model implements | Median ≥ baseline + 1, or two rounds without a full point | ~0.35 USD and 2 min per round |
+| **Redesign** | New surface, or the user wants the highest score the direction can reach | Reference brief, then Discover diverge (three seeded directions, each scored), then the critic loop to plateau | `fable` brief, `opus` critic, session model implements | Plateau: three rounds without a point, or 9/10 | ~3–5 USD for three directions plus four rounds |
 
 Spot check needs no permission; it is the price of touching a screen. Review
 and Redesign go through the gate.
@@ -82,7 +82,7 @@ AskUserQuestion call as the gate, so the user answers both at once:
   nothing renders yet (a brand-new surface):
   1. **Use the current page** — screenshot the surface as it stands and
      write the brief from it. Keeps the identity the page already has; best
-     for Review. One `fable` call, about $0.35.
+     for Review. One `fable` call, about 0.35 USD.
   2. **Current page plus my images** — the screenshot plus one to four
      inspiration images the user supplies. Pulls the existing page toward a
      reference; good for either tier.
@@ -375,7 +375,7 @@ updating the table.
 | Role | Model | Why (measured 2026-09-11) |
 |---|---|---|
 | Reference brief | `fable`, else `opus` | Written once, read hundreds of times; the two-image brief resolved a dark photograph against a light page into one coherent direction with attainable rules |
-| Spot check, pairwise | `sonnet` | 10 s and $0.03; 20/20 on known regressions, no order bias, 91% rule agreement with the Opus critic |
+| Spot check, pairwise | `sonnet` | 10 s and 0.03 USD; 20/20 on known regressions, no order bias, 91% rule agreement with the Opus critic |
 | Scoring critic (Review, Redesign) | `opus`, three repeats, median | Widest useful range (3–8) and 8 of 11 samples within a point across repeats; Sonnet compressed to 3–6 and bounced 1–7 on one sample |
 | Critic synthesis pass | none | A Fable pass over Sonnet plus Opus critiques sharpened the gap text but left the score where it was, at six times the cost |
 | Ideation (Discover) | the session model | Needs the user's context and taste |
@@ -435,3 +435,8 @@ not advisory:
 - Don't report a screen as done because tests pass. Done is when the user has
   seen the screenshot, the spot check has run, and the user has said so.
 - Don't let "internal" or "pilot" talk you into browser defaults.
+
+<!-- Maintainers: Claude Code replaces `$` followed by a digit in this file
+with the skill's arguments, so write money as "0.35 USD", never with a
+leading dollar sign. The reference files are read with the Read tool and are
+not affected. -->
