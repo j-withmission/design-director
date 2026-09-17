@@ -163,7 +163,10 @@ Read `references/reference-brief.md` when the brief check calls for a brief
 inspiration mid-task.
 
 One `fable` pass over the inspiration set writes the reference read, a
-translation into UI terms, and three to five checkable rules. That text is
+translation into UI terms, and three to five checkable rules. When the
+product defines its colors in code, collect those tokens first and pass
+them in; the brief uses the code values instead of estimating colors from a
+screenshot. That text is
 saved to `docs/design/briefs/<slug>.md` with its hash, and **it is what the
 critic and the spot check receive from then on. They never see the images.**
 Any image is valid inspiration: a photograph, a painting, a poster, a product
@@ -424,6 +427,8 @@ not advisory:
   see Resource budget.
 - Don't hand the critic code, diffs, previous critiques, or the inspiration
   images. It gets the screenshot, the aesthetic sentence, and the brief.
+- Don't let a brief guess colors the code already defines. Collect the
+  palette tokens and pass them to the brief writer.
 - Don't reuse a critic context across rounds or across repeats.
 - Don't edit the critic prompt or regenerate the brief mid-loop to get a
   better score.

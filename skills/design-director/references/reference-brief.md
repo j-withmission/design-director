@@ -51,6 +51,47 @@ a page that already looks generic, it can write the generic defaults down as
 the direction. Offer it for Review, where keeping the identity is the goal;
 for Redesign, steer toward outside images.
 
+## Colors from code
+
+When the product already defines its colors in code, those values are the
+palette. A model reading a screenshot estimates hex values, and on
+2026-09-17 a brief written from a live page guessed a `#F4F3F0` background
+and a `#B5602A` accent for a site whose stylesheet said `#ffffff` and
+`#c65a2e`. Every critic then checked the page against the wrong colors.
+
+Before writing any brief, look for the palette in code:
+
+- **CSS custom properties** in the stylesheet the app actually loads (check
+  the root layout or entry file's imports; skip legacy copies): `:root`,
+  `.dark`, `[data-theme]`.
+- **Tailwind**: `@theme` blocks in CSS (v4), or `theme.colors` and
+  `theme.extend.colors` in `tailwind.config.*` (v3).
+- **Token files**: `tokens.json`, `*.tokens.json`, Style Dictionary or
+  Figma token exports.
+- **Theme objects** in CSS-in-JS, MUI, Chakra, or styled-components.
+- **Native**: iOS `*.colorset/Contents.json` and SwiftUI `Color`
+  extensions, Android `res/values/colors.xml` and Compose `ColorScheme`,
+  Flutter `ThemeData`.
+
+Collect the semantic color tokens only: background, surface, text, muted
+text, border or rule, accent, and state colors, with their values. Resolve
+`var()` aliases to the final value, keep light and dark sets separate, and
+leave out chart and syntax palettes unless the surface uses them. About
+twenty tokens is plenty. Write them into the code palette block of the
+prompt as `name: value, role`, taking the role from the token name or an
+adjacent comment.
+
+How the block is used depends on the source:
+
+- **The current page is in the set:** the code values are authoritative.
+  The brief uses them verbatim in its palette read, translation and rules.
+- **Images only:** the code values are the product's current palette. The
+  brief keeps them unless the images clearly call for a change, and says
+  which in its Resolution.
+
+No palette in code (a new project, or a one-off artifact): delete the block
+and the brief reads colors from the images as before.
+
 ## Procedure
 
 1. Collect the inspiration set from the source the user chose: one to four
@@ -58,7 +99,9 @@ for Redesign, steer toward outside images.
    surface, the current page). Prefer at least one product surface alongside
    any photograph; it is what makes the rules satisfiable. Save them under
    `docs/design/refs/` (or the record's folder).
-2. Spawn a `fable` subagent (fall back to `opus`, never `sonnet`; the brief
+2. Collect the code palette (above), and fill or delete the
+   `[IF CODE PALETTE: ...]` block in the prompt.
+3. Spawn a `fable` subagent (fall back to `opus`, never `sonnet`; the brief
    is read hundreds of times, so its quality is the cheapest place to spend).
    Its instructions begin:
 
@@ -70,12 +113,13 @@ for Redesign, steer toward outside images.
    ```
 
    followed by the prompt below with the aesthetic sentence filled in.
-3. Save the output verbatim to `docs/design/briefs/<slug>.md` with a header
+4. Save the output verbatim to `docs/design/briefs/<slug>.md` with a header
    line recording date, model, source (images, current page, or both),
-   image file names, and a hash
+   palette source (code, with the file, or images), image file names, and a
+   hash
    (`shasum -a 256` of the brief text, first 12 characters). Put the path and
    hash in the design record.
-4. Regenerate only when the inspiration set changes. A new brief starts a new
+5. Regenerate only when the inspiration set or the code palette changes. A new brief starts a new
    baseline; scores across briefs are not comparable.
 
 Cost: one call, about 60 seconds and $0.35 on `fable`.
@@ -109,6 +153,17 @@ cards, gradient backdrops, a stock accent color), leave them out of the
 resolution and write rules this screenshot's weakest regions would fail.
 When other references are present, they set where the page is going and the
 screenshot sets what it keeps.]
+
+[IF CODE PALETTE: The product defines these colors in code, from
+[FILE PATH]:
+[TOKEN LIST, one per line as name: value, role]
+[IF CURRENT PAGE: These values are authoritative. Use them exactly in the
+palette read, the translation and the rules, naming the token for each
+color. Never substitute a value estimated from the screenshot; where the
+screenshot seems to show a different color, the code value wins.]
+[IF IMAGES ONLY: These are the product's current colors. Keep them unless
+the references clearly call for a change; for each color you replace, say
+so in the Resolution and give the new value.]]
 
 Step 1. Read each image separately on five axes: palette, composition, focus,
 density, light and material. Be concrete: approximate hex values, proportions
