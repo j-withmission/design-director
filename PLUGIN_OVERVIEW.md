@@ -10,13 +10,13 @@ the cheapest, and defaults to skipping when nobody is there to answer.
 
 - **Spot check** — runs unasked at the end of any task that changed a surface:
   a pairwise comparison against the last screenshot, a rules tally against the
-  brief, at most two nudges, no score. Roughly 10 seconds and 0.03 USD.
+  brief, at most two nudges, no score. One call, about ten seconds.
 - **Review** — for a surface whose baseline slipped. Three critic repeats per
-  round on the current direction, scored, median reported. Roughly 2 minutes
-  and 0.35 USD per round.
+  round on the current direction, scored, median reported. About two minutes
+  per round.
 - **Redesign** — for a new surface. A cached reference brief, three seeded
   directions each scored, then critic rounds until the score stops moving.
-  Roughly 3 to 5 USD.
+  The most calls of the three tiers by far.
 
 Each design keeps a Markdown record on disk: the baseline per surface, every
 critic round with its median and spread, the Lighthouse scores, and the
@@ -41,13 +41,14 @@ model picked the better of two screenshots 20 times out of 20, yet ranged from
 - Chrome or Chromium, on `PATH` or in `/Applications`, for the screenshots.
 - Node 18 or newer for the screenshot script that drives Chrome over CDP.
 - `npx lighthouse` for the accessibility gate, fetched on first use.
-- Critic runs spend real tokens on your own provider account, at the per-tier
-  rates above.
+- Critic runs spend tokens on your own provider account. The cost depends on
+  the model you pick and the tier: a spot check is one call, a redesign is
+  dozens.
 - Optional image and video generation keys (`OPENAI_API_KEY`, `GEMINI_API_KEY`,
   `FAL_KEY`) in a gitignored `.env.agents`. Without them the skill says so in
   one line and uses documented fallbacks.
-- Only the Claude configuration is calibrated. Every number above was measured
-  on Claude models; a run on `codex`, `pi` or an ACP agent is a separate scale
+- Only the Claude configuration is calibrated. The score findings above were
+  measured on Claude models; a run on `codex`, `pi` or an ACP agent is a separate scale
   whose scores are internally comparable and nothing else, which is why the
   record logs the provider and model beside every score.
 
