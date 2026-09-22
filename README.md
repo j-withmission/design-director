@@ -86,10 +86,50 @@ git clone https://github.com/j-withmission/design-director.git
 ln -s "$PWD/design-director/skills/design-director" ~/.claude/skills/design-director
 ```
 
+## Works in bb
+
+The skill also runs inside [bb](https://github.com/get-bb/bb), on any provider
+— Claude Code, Codex, Pi, or an ACP agent such as Cursor. bb reads
+`~/.claude/skills` as a shared skill root, so the install above is the whole
+install: the skill shows up as a read-only shared skill and is injected into
+every provider. It detects the runtime from `BB_THREAD_ID` and reads
+[`references/runtime-bb.md`](skills/design-director/references/runtime-bb.md)
+before it asks anything or spawns anything.
+
+**Install as a bb plugin.** This repo is also a headless bb plugin, so bb can
+manage and update it for you instead of you keeping a clone in sync:
+
+```
+bb plugin install https://github.com/j-withmission/design-director
+```
+
+The plugin ships nothing but the skill — no page, no command, no storage — and
+bb injects `skills/design-director/` into every thread as the plugin skills
+tier. Pick one path or the other: with both the plugin and a
+`~/.claude/skills` install in place the same skill is injected twice, once as
+a plugin skill and once as a shared skill.
+
+In bb there is no AskUserQuestion and no subagent. The gate and brief
+questions are asked in plain chat on providers without native questions, and
+each critic runs as a hidden child thread spawned with `bb thread spawn`, with
+the screenshot attached as an image instead of read from disk.
+`scripts/bb-critics.sh` does the spawning, waiting and score parsing; three
+critic repeats are three hidden threads that run at once.
+
+Critics prefer the `claude-code` provider when bb has one, then the session
+thread's own provider, and `DESIGN_DIRECTOR_PROVIDER` overrides both. **Only
+the Claude configuration is calibrated.** Everything measured above was
+measured on Claude models; a Codex or Pi critic is a separate configuration
+whose scores are internally comparable and nothing else, which is why the
+design record logs the provider and model next to every score.
+
 ## Requirements
 
-- Claude Code. The skill spawns subagents and uses the model aliases `fable`,
-  `opus`, and `sonnet`.
+- Claude Code, or bb. In Claude Code the skill spawns subagents and uses the
+  model aliases `fable`, `opus`, and `sonnet`.
+- Optional: [bb](https://github.com/get-bb/bb) (desktop app v0.42 or newer)
+  to run the same skill on any provider. Nothing extra to install; the skill
+  uses the `bb` CLI that bb injects into every thread as `BB_CLI`.
 - Chrome or Chromium, either on `PATH` or installed in `/Applications`, for the
   screenshot scripts.
 - Node 18 or newer for `shoot-auth.mjs`, which talks to Chrome over CDP.
@@ -153,9 +193,11 @@ skills/design-director/
     spot-check.md               the spot and pairwise prompts
     deliver.md                  subtraction pass, the AI tells checklist, states
     media-generation.md         image and video generation, and fallbacks without keys
+    runtime-bb.md               running the skill in bb, on any provider
   assets/
     design-brief.md             the design record template
   scripts/
+    bb-critics.sh               critics, spot checks and briefs as bb child threads
     seed.sh                     random seed string from /dev/urandom
     shot.sh                     headless Chrome screenshot to a PNG
     shoot-auth.mjs              screenshots behind a login, one Chrome per run

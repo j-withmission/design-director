@@ -125,7 +125,12 @@ regenerate the brief when it changes.
    Then respond to the following.
    ```
 
-   followed by the prompt below with the aesthetic sentence filled in.
+   followed by the prompt below with the aesthetic sentence filled in. In bb,
+   that spawn is `scripts/bb-critics.sh --role brief --repeats 1` with one
+   `--image` per inspiration file in order; the images are attached rather
+   than read, so the preamble becomes "The inspiration images are attached to
+   this message, in this order: [FILE NAMES]. Do not open any files in the
+   workspace." See `references/runtime-bb.md`.
 4. Save the output verbatim to `docs/design/briefs/<slug>.md` with a header
    line recording date, model, source (images, current page, or both),
    palette source (code, with the file, or images), image file names, and a
