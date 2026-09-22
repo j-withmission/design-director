@@ -56,9 +56,14 @@ One row per surface. The baseline is the median of three critic scores from
 the last accepted Review or Redesign round, valid only for the configuration
 in the row.
 
-| Surface | Baseline (median) | Rules passed | Brief hash | Critic model | Date | Set by (round) |
+| Surface | Baseline (median) | Rules passed | Brief hash | Configuration | Date | Set by (round) |
 |---|---|---|---|---|---|---|
 | | | | | | | |
+
+Configuration is the critic model, and in bb the provider too:
+`opus` in Claude Code, `claude-code/claude-opus-5[1m]/high` or
+`codex/gpt-5.6-sol/high` in bb. Scores from two configurations are two
+scales; never compare them or carry a baseline across them.
 
 ## Directions explored
 
@@ -78,7 +83,7 @@ One row per Review or Redesign round. The critic prompt is
 between rounds. Score is the median of three repeats; spread is min–max.
 Rules passed is the brief's tally and never feeds the score.
 
-| Round | Date | Tier | Critic model | Score (median) | Spread | Rules passed | Top 3 gaps |
+| Round | Date | Tier | Configuration | Score (median) | Spread | Rules passed | Top 3 gaps |
 |---|---|---|---|---|---|---|---|
 | 0 (baseline) | | | | | | | |
 | 1 | | | | | | | |
@@ -90,9 +95,9 @@ Stopped because: [baseline + 1 reached / two rounds without a point / plateau ov
 One row per spot check (`references/spot-check.md`). Pair verdict compares
 against the previous row's screenshot.
 
-| Date | Surface | Pair verdict (better / same / worse, margin) | Rules passed | Top nudge | Applied? | Screenshot |
-|---|---|---|---|---|---|---|
-| | | | | | | |
+| Date | Surface | Configuration | Pair verdict (better / same / worse, margin) | Rules passed | Top nudge | Applied? | Screenshot |
+|---|---|---|---|---|---|---|---|
+| | | | | | | | |
 
 ## Media generated
 

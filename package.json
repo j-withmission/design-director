@@ -1,0 +1,29 @@
+{
+  "name": "bb-plugin-design-director",
+  "version": "1.0.0",
+  "private": false,
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/j-withmission/design-director"
+  },
+  "engines": {
+    "bb": ">=0.42",
+    "bbPluginSdk": ">=0.4.47"
+  },
+  "bb": {
+    "name": "Design director",
+    "description": "Catch a screen that looks generic before you call the work done, and keep every design score on record. A critic scores each screenshot without seeing the code, so the agent that built the screen is not the one grading it. Three tiers run from a 0.03 USD spot check after any UI change to a 3-to-5 USD redesign with seeded directions. Critic runs spend provider tokens, and the screenshot scripts need Chrome or Chromium and Node 18 or newer.",
+    "branding": {
+      "icon": "Palette"
+    },
+    "server": "./server.ts",
+    "skills": ["skills"]
+  },
+  "devDependencies": {
+    "@get-bb/plugin-sdk": "0.4.47",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}

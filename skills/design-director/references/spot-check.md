@@ -38,7 +38,11 @@ if one exists:
    (or the last review round). If there is none, skip the pairwise step.
 3. Spawn a `sonnet` subagent, fresh context, instructions beginning with the
    Read-only preamble used by the critic, the new PNG path (and the previous
-   PNG path for the pairwise step), then the prompts below.
+   PNG path for the pairwise step), then the prompts below. In bb, that is
+   `scripts/bb-critics.sh --role spot --repeats 1 --image <new.png>
+   [--image <previous.png>] --prompt-file <prompt> --out-dir <dir>`, which
+   attaches the shots instead of naming paths; see
+   `references/runtime-bb.md`.
 4. Log one row in the record's spot log: date, surface, pair verdict, rules
    passed, top nudge, screenshot path.
 5. **Escalate** to a Review when any of these is true:
@@ -89,8 +93,10 @@ Nudges:
 
 ## Pairwise prompt
 
-Preamble names two files: "Screenshot A: [path]  Screenshot B: [path]".
-Randomize which is the previous shot; map the verdict back afterwards.
+Preamble names two files: "Screenshot A: [path]  Screenshot B: [path]". In bb
+the two are attached in order instead, so the preamble reads "Screenshot A is
+the first attached image, Screenshot B the second." Randomize which is the
+previous shot; map the verdict back afterwards.
 
 ```
 You are a design critic at a top-tier studio comparing two screenshots of the
