@@ -89,6 +89,13 @@ How the block is used depends on the source:
   brief keeps them unless the images clearly call for a change, and says
   which in its Resolution.
 
+The code palette governs the brief's read. It does not by itself close the
+palette axis for Discover: under Redesign the palette is fixed only when
+the user answered the palette question with "keep it", or when the brief's
+Resolution kept it from a reference the user supplied. Otherwise each
+direction brings its own palette, and the brief's values stand only as the
+page's current state.
+
 No palette in code (a new project, or a one-off artifact): delete the block
 and the brief reads colors from the images as before.
 

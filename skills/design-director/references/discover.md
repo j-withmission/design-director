@@ -78,18 +78,27 @@ produces three skins of one page. That is not three directions.
 So, before reading any seed, split the brief's five axes into **fixed** and
 **open** and write the split in the design record:
 
-- **Fixed** is what the brief or the code pins: a palette defined in code,
-  sprites and marks the owner keeps, the kept elements list.
+- **Fixed** is what has been decided: a brand palette, the kept elements
+  list, sprites and marks the owner keeps, or a palette the user chose to
+  keep when the brief check asked. Decided means a person said so, or the
+  brief's Resolution kept it from a reference the user supplied.
 - **Open** is everything else, and composition, hierarchy, density and
-  material are open unless the brief names them fixed. A pinned palette
-  never closes them.
+  material are open unless the brief names them fixed. A palette that is
+  only defined in code is open too: tokens in a stylesheet record what the
+  page looks like today, not that anyone chose it. Under Redesign that
+  palette is the thing being replaced unless the user says otherwise.
 
 Each seed is read into the open axes first. A direction has to move at
 least two of the open axes in a way a stranger would notice in a thumbnail:
 a different grid, a different reading order, a different density, a
-different finish. Palette variation on top of a shared layout is a theme,
-and a theme is not a direction. When every axis is fixed, say so and stop:
-there is nothing for Discover to explore, and the tier should be Review.
+different finish. When palette is open, it is one of the axes every
+direction moves: each direction reads its own palette from its own seed
+(the hex-looking runs, the hue the letter clusters suggest), and three
+directions sharing a field color and a tile set have not moved it. A
+pinned palette never closes the other axes, and a shared layout under
+three palettes is a theme, not a direction. When every axis is fixed, say
+so and stop: there is nothing for Discover to explore, and the tier should
+be Review.
 
 ## Technique 2: ambitious briefs
 
@@ -206,7 +215,8 @@ divergence check:
 
 - Name, per pair, what differs at thumbnail size. Layout, reading order,
   density and finish count; a frame, a background tint or a shadow style
-  alone does not.
+  alone does not. When palette is open, three directions on one field
+  color with one tile set fail the check even if their structures differ.
 - If any two directions share layout, components and palette, that is one
   direction rendered twice. Rebuild the weaker one against different open
   axes before spending a critic. Three Opus repeats on the same page three
