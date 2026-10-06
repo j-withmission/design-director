@@ -68,6 +68,29 @@ Write the reading into the design record so the direction can be explained
 later. Two readings of the same seed are both valid; pick the one that
 excites you and move on.
 
+### What the seed is allowed to move
+
+The reference brief, when there is one, settles the world: its translation
+fixes palette, composition, hierarchy, density and material. Read literally,
+that leaves the seed nothing to vary, and a run that reads it literally
+produces three skins of one page. That is not three directions.
+
+So, before reading any seed, split the brief's five axes into **fixed** and
+**open** and write the split in the design record:
+
+- **Fixed** is what the brief or the code pins: a palette defined in code,
+  sprites and marks the owner keeps, the kept elements list.
+- **Open** is everything else, and composition, hierarchy, density and
+  material are open unless the brief names them fixed. A pinned palette
+  never closes them.
+
+Each seed is read into the open axes first. A direction has to move at
+least two of the open axes in a way a stranger would notice in a thumbnail:
+a different grid, a different reading order, a different density, a
+different finish. Palette variation on top of a shared layout is a theme,
+and a theme is not a direction. When every axis is fixed, say so and stop:
+there is nothing for Discover to explore, and the tier should be Review.
+
 ## Technique 2: ambitious briefs
 
 The other way to push the model off its defaults is to give it a strong,
@@ -116,6 +139,12 @@ retry when a newer model ships.
 Asking an AI for ideas directly yields the ideas everyone else gets. The fix
 is to use the model for breadth and the user for direction.
 
+The ladder is not optional under Redesign when a user is present. Three
+directions named by the agent alone come from the same distribution, and
+they converge. When nobody can answer, say so in the record, and make the
+three seeds carry the breadth instead: three different open-axis splits,
+not three readings of one.
+
 **1. Ask for many ideas with deliberately little detail.**
 
 ```
@@ -163,17 +192,40 @@ kind that produces a design only they could have made.
 ## Presenting directions
 
 Discover runs under **Redesign** only; a Review keeps the direction the
-surface already has. Produce at least three seeded directions. For each: a
-quick build, a screenshot at a realistic viewport, a one-line aesthetic
-statement, and one Review critic round (three `opus` repeats, median and
-rules tally logged). Lay the screenshots out side by side (a grid image, a
-small artboard canvas, or three files sent together) with their medians and
-ask which to pursue. Include one direction that seemed too risky; it is often
-the one chosen. The score informs the choice; the user makes it.
+surface already has. Produce at least three seeded directions. **Each
+direction is its own file** (or its own branch, or its own artboard): never
+one page with a direction switch, a theme toggle, or a set of CSS variants.
+A switch guarantees the directions share everything the switch does not
+touch, which is almost everything. The screenshots must come from three
+separate renders, not three states of one.
+
+For each: a quick build, a screenshot at a realistic viewport, a one-line
+aesthetic statement, and the list of open axes it moves and how. Then,
+**before any critic round**, lay the three side by side and run the
+divergence check:
+
+- Name, per pair, what differs at thumbnail size. Layout, reading order,
+  density and finish count; a frame, a background tint or a shadow style
+  alone does not.
+- If any two directions share layout, components and palette, that is one
+  direction rendered twice. Rebuild the weaker one against different open
+  axes before spending a critic. Three Opus repeats on the same page three
+  times is nine wasted calls, and medians within a point of each other
+  across all three are the symptom.
+
+Only then give each direction one Review critic round (three `opus`
+repeats, median and rules tally logged). Lay the screenshots out side by
+side (a grid image, a small artboard canvas, or three files sent together)
+with their medians and ask which to pursue. Include one direction that
+seemed too risky; it is often the one chosen. Risky means a different
+structure or material that might not work, not a stronger gradient on the
+same page. The score informs the choice; the user makes it.
 
 If the design has inspiration, the reference brief
 (`references/reference-brief.md`) is written before the first direction is
-built, and every direction is built toward its translation.
+built. Every direction honors the brief's fixed axes and the rules; the open
+axes are where the directions differ. "Built toward the translation" means
+the resolved world, not one layout.
 
 Never present a direction as a paragraph of description. People cannot react
 to "a warm, editorial layout with generous whitespace"; they can react to a

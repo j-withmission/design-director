@@ -29,6 +29,17 @@ How the seed was read:
 |---|---|
 | | |
 
+Brief axes (fixed = pinned by code, kept elements or the brief; open = where
+directions differ):
+
+| Axis | Fixed / open | Pinned by |
+|---|---|---|
+| Palette | | |
+| Composition | | |
+| Hierarchy | | |
+| Density | | |
+| Light and material | | |
+
 Resulting direction (palette, layout principle, type, motif, motion):
 
 ## Inspiration and the reference brief
@@ -70,9 +81,14 @@ scales; never compare them or carry a baseline across them.
 Every direction rendered in Discover, including the ones not chosen. Keep the
 screenshots; they are the fastest way to explain the decision later.
 
-| Name | Seed | One line | Screenshot | Chosen? |
-|---|---|---|---|---|
-| | | | | |
+| Name | Seed | File | Open axes moved | One line | Screenshot | Chosen? |
+|---|---|---|---|---|---|---|
+| | | | | | | |
+
+Each direction is its own file. Divergence check (per pair, what differs at
+thumbnail size; rebuilt if two shared layout, components and palette):
+
+-
 
 Why the chosen one won, in the user's words if possible:
 
