@@ -246,6 +246,11 @@ Rules:
 - **Rules** are the checklist the spot check and the critic report on. They
   are a progress tally, never a score. A page can fail every rule and be
   well made; the score says so and the tally says what is still to do.
+- Under Redesign, the translation sets the world, not the layout. Before
+  Discover, mark each of its five axes fixed or open (`discover.md`, "What
+  the seed is allowed to move"). A palette from code is fixed; composition,
+  hierarchy, density and material stay open unless the brief or the kept
+  elements pin them. Directions vary the open axes.
 - If the Resolution section picked a governing reference the user did not
   intend, fix the inspiration set (drop or add an image) and regenerate;
   do not hand-edit the brief.

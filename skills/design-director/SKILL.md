@@ -198,10 +198,13 @@ changes, never to get a better number.
 
 Read `references/discover.md` when running this stage.
 
-Write the brief first if there is inspiration. Then the ideation ladder and
-at least three seeded directions, each built and screenshotted, presented
+Write the brief first if there is inspiration, and split its five axes into
+fixed and open (`discover.md`, "What the seed is allowed to move"). Then the
+ideation ladder and at least three seeded directions, each its own file,
+each built and screenshotted, each moving at least two open axes, presented
 side by side with a one-line aesthetic statement each. Include one that
-seemed too risky.
+seemed too risky. Run the divergence check before any critic: if two
+directions share layout, components and palette, rebuild before scoring.
 
 **Score every direction before asking.** Each direction gets one Review
 critic round: three `opus` repeats, median logged. Show the user the three
@@ -468,6 +471,12 @@ not advisory:
   are two configurations, not one scale; log the provider next to the score.
 - Don't fake richness with glows, gradient orbs, or blurred blobs.
 - Don't "imagine" a seed string. Run the script.
+- Don't build three directions as one page with a switch, a theme toggle,
+  or CSS variants. Each direction is its own file. Three skins of one
+  layout is one direction, and the critic will score it three times.
+- Don't let a pinned palette close the other axes. Composition, hierarchy,
+  density and material stay open for Discover unless the brief says
+  otherwise; if every axis is fixed, the tier is Review, not Redesign.
 - Don't report a screen as done because tests pass. Done is when the user has
   seen the screenshot, the spot check has run, and the user has said so.
 - Don't let "internal" or "pilot" talk you into browser defaults.
