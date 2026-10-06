@@ -115,6 +115,19 @@ Then write the brief as `references/reference-brief.md` describes, before
 Discover or the first critic round. The answer holds under every tier,
 including Skip: a brief made now is what the spot check reads later.
 
+**Ask about the palette under Redesign.** When the tier is Redesign and
+the product defines its colors in code, add a third question to the same
+call, whether or not a brief exists:
+
+- Question: "The code defines a palette. Is it decided, or should the
+  directions vary it?"
+- Options: **Keep it** (the brief uses the code values, and every
+  direction shares them) or **Open it** (each direction carries its own
+  palette; the code values go to the brief as the current state only).
+
+Record the answer in the design record's axes table. Without an answer,
+the palette is open; a palette nobody chose is not a constraint.
+
 The spot check, which runs without the gate, does the same look-first check
 and asks the brief question on its own the first time it meets a surface
 with no brief and no recorded decline.
@@ -474,6 +487,9 @@ not advisory:
 - Don't build three directions as one page with a switch, a theme toggle,
   or CSS variants. Each direction is its own file. Three skins of one
   layout is one direction, and the critic will score it three times.
+- Don't treat a palette as fixed because it is in code. Fixed means
+  decided: a brand, a kept element, or the user's answer to the palette
+  question. Under Redesign an undecided palette varies per direction.
 - Don't let a pinned palette close the other axes. Composition, hierarchy,
   density and material stay open for Discover unless the brief says
   otherwise; if every axis is fixed, the tier is Review, not Redesign.

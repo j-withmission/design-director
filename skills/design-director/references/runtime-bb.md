@@ -50,7 +50,14 @@ This surface has no inspiration brief. How should I make one?
   2. Current page plus my images
   3. I'll provide inspiration
   4. No brief
+
+The code defines a palette. Is it decided, or should the directions vary it?
+  1. Keep it
+  2. Open it
 ```
+
+The palette question is asked only under Redesign, when the product defines
+its colors in code. Unanswered, the palette is open.
 
 Read no reference, run no script and spawn no thread until the answer comes
 back. On an autonomous run with nobody to answer, the default is **Skip**,

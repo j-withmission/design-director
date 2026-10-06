@@ -29,10 +29,10 @@ How the seed was read:
 |---|---|
 | | |
 
-Brief axes (fixed = pinned by code, kept elements or the brief; open = where
-directions differ):
+Brief axes (fixed = decided by the user, a brand, kept elements or the
+brief's Resolution; open = where directions differ):
 
-| Axis | Fixed / open | Pinned by |
+| Axis | Fixed / open | Decided by |
 |---|---|---|
 | Palette | | |
 | Composition | | |
