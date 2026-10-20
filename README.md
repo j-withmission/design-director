@@ -1,5 +1,7 @@
 # design-director
 
+[![skills.sh](https://skills.sh/b/j-withmission/design-director)](https://skills.sh/j-withmission/design-director/design-director)
+
 A design process for Claude Code, for any surface a person will look at: an app
 screen, a landing page, a dashboard, an internal tool, a report. It runs a
 separate critic that sees only a screenshot, never the code, so the agent is not
@@ -69,10 +71,11 @@ what the score meant.
 
 ## Install
 
+Listed on [skills.sh](https://skills.sh/j-withmission/design-director/design-director).
 For every project, install it at the user level with `-g`:
 
 ```
-npx skills add https://github.com/j-withmission/design-director --skill design-director -g
+npx skills add j-withmission/design-director --skill design-director -g
 ```
 
 Without `-g` it installs into the current project's `.claude/skills/`. The
