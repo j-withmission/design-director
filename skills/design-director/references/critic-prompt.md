@@ -172,8 +172,9 @@ similar density).
 
 ## Reading the output
 
-- Feed the **Biggest gaps** list to the implementer in order. The first two
-  usually account for most of the score movement.
+- Feed the implementer the **top three** of the **Biggest gaps**, in order,
+  never the whole list (owner's rule, 2026-10-21). The first two usually
+  account for most of the score movement; the rest wait for the next round.
 - **Rules check** goes into the record's tally column. A rule that fails
   three rounds running is either the next gap to take or a rule the user
   should decide to drop; say which.

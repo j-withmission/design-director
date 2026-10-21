@@ -274,7 +274,8 @@ Each round:
    round to round, or the scores stop being comparable. Take the median
    score; take the gaps from the median critique; log the spread and the
    rules tally.
-5. **Apply the top gaps, subtraction first.** Treat each gap as a diagnosis,
+5. **Apply the top three gaps, subtraction first** — three, not the list
+   (the volume cap below). Treat each gap as a diagnosis,
    not a prescription: when the critic says "add a section", ask whether
    removing or restructuring something solves the same gap. An added section
    is the next round's AI tell. A rule that fails is a to-do for the tally,
@@ -461,10 +462,27 @@ not advisory:
 - If the run needs more than four implementers to finish in reasonable
   time, that is a sign to serialize by screen, not to widen.
 
+## Volume cap (owner's rule, 2026-10-21)
+
+A review that returns a wall of findings reopens the build instead of
+closing it: on 2026-10-21 three critic and review passes returned 24
+findings at once, every one was dispatched, and the close-out became a
+second build. So:
+
+- The implementer gets the **top three gaps** from a critic round, never the
+  whole list; the rest stay in the record as the next round's candidates.
+- A critic round and a code review (the `finish` skill's three lenses) never
+  run at the same time; one finishes and is triaged before the other starts.
+- When a round or a review yields more than about five actionable items,
+  **show the user the triaged short list and the deferred remainder before
+  dispatching any of it**, and before starting another round.
+
 ## What not to do
 
 - Don't skip the gate, and don't run Redesign because it seems warranted;
   the user chooses. The spot check is the only thing that runs unasked.
+- Don't hand an implementer more than three gaps at once, and don't start a
+  new round or a review while another's findings are still being fixed.
 - Don't skip the brief check, and don't ask when a brief already exists. A
   surface with no brief gets asked once, and the answer, including "no
   brief", goes in the record.
