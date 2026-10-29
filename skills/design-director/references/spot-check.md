@@ -22,7 +22,9 @@ if one exists:
    the right direction for something that runs constantly.
 3. **At most two nudges**: what, where, the fix. Same top nudge across three
    repeats on every sample tested, with the same hex value and the same
-   region each time.
+   region each time. A nudge may add as well as remove: when the screen has
+   lost the fill, weight or finish the aesthetic sentence names, the top
+   nudge says what to put back.
 
 ## Procedure
 
@@ -48,7 +50,9 @@ if one exists:
 5. **Escalate** to a Review when any of these is true:
    - the pairwise verdict is "worse" with a `clear` margin;
    - a rule that passed in the last logged row now fails;
-   - the same nudge has been logged three times without being applied.
+   - the same nudge has been logged three times without being applied;
+   - the screen has no fill, weight or finish left and the aesthetic
+     sentence or brief names one.
    Otherwise apply the top nudge if it is a one-line change, and move on.
 
 The spot check never edits the brief, never scores, and never runs more than
@@ -77,7 +81,9 @@ the nudges.
 Give at most two nudges: the two changes that would most move this screen
 toward the aesthetic[IF BRIEF: and the brief's world]. Each nudge is one
 line: what is wrong, where on screen, the specific fix. Structure and
-composition before detail. If nothing is worth changing, say "none".
+composition before detail. A change may add material as well as remove
+decoration; a page with nothing filled, weighted or finished is as far from
+the aesthetic as a decorated one. If nothing is worth changing, say "none".
 
 Do not give a score. No summary, no encouragement.
 

@@ -5,6 +5,11 @@ scores are only comparable across rounds if the prompt is identical, so resist
 the urge to add "focus on X this time" — put that in the implementer's
 instructions instead.
 
+The prompt changed on 2026-10-29: step 2 names material as a studio move,
+and step 4 counts an under-made page as a tell. Scores from before that date
+are a different configuration and are not comparable with later ones. Log
+the prompt date next to the configuration string in the record.
+
 The critic gets a **fresh context** each round and sees **only** what is
 listed under Inputs. No code, no diff, no previous critique, no round number,
 no note about effort. Anything beyond the screenshot makes the critic
@@ -112,7 +117,7 @@ Work through this in order:
 2. How a top studio would execute this. Imagine the best studio in the world
    took this exact aesthetic and this exact surface. Describe in three to five
    bullets the specific moves they would make: composition, hierarchy, type,
-   color, imagery, motion, restraint.
+   color, imagery, motion, material, restraint.
 
 3. Biggest gaps. Rank the largest gaps between the screenshot and that
    execution. Maximum six. For each: what is wrong, where on the screen, and
@@ -120,9 +125,13 @@ Work through this in order:
    the fine details: spacing rhythm, type pairing, alignment, contrast, edge
    cases like long text.
 
-4. AI tells. List any patterns that feel overdone, excessive, templated, or
-   otherwise obviously machine-generated. Penalize these in the score. Be
-   specific about which element.
+4. AI tells. List any patterns that read as machine-generated. There are
+   two kinds and both count. Overdone: templated, excessive, decorated.
+   Under-made: the generic minimal page, with hairline rules, monospaced
+   or tabular numerals, small tracked uppercase labels, no fill, no
+   material, and whitespace standing in for a decision, when the stated
+   aesthetic does not call for that. A thin page is not a restrained
+   page. Penalize both in the score. Be specific about which element.
 
 5. Score. Give a score out of 10 for how close this design is to the studio
    execution you described, with one line of justification. Be honest and use
@@ -183,6 +192,11 @@ similar density).
   than removing it.
 - If **Aesthetic as read** disagrees with the stated aesthetic two rounds
   running, the problem is the direction, not the polish. Go back to Discover.
+- If the top gaps three rounds running are all removals, or the design has
+  lost its fill, its material, or any weight above a hairline, the loop is
+  converging on the ledger (see Known bias). The next round's instruction to
+  the implementer names what to add back from the brief's vocabulary, or the
+  material in the aesthetic sentence, before any further cut.
 - Log round, date, model, median score and spread, rules passed, and the top
   three gaps in the design record.
 
@@ -192,8 +206,15 @@ On real professional sites with no brief, Opus scored the one ruled
 editorial page (a broadsheet homepage) 7.7 and nothing else above 6.7, and in
 head-to-head pairs it chose a ruled concept over a rebuilt live site twice.
 The critic follows the aesthetic sentence it is given, so its prescriptions
-stay in register, but its taste leans editorial when it scores. The brief is
-the counterweight: with a dark, photographic reference the same critic ranked
-a near-black developer site above the broadsheet. Write the aesthetic
-sentence and choose the inspiration deliberately; do not let the critic's
-default fill that gap.
+stay in register, but its taste leans editorial when it scores. With a dark,
+photographic reference the same critic ranked a near-black developer site
+above the broadsheet.
+
+In practice (owner's observation, 2026-10-29), a loop with no brief and a
+vague aesthetic sentence converges on a hairline ledger: every gap the
+critic names is a removal, and under the earlier prompt restraint was the
+one studio move it always listed. The 2026-10-29 prompt names under-made as a tell to
+counter this. The counterweight that works is still the brief, and an
+aesthetic sentence that names a material or finish, which `SKILL.md` now
+requires. Write the aesthetic sentence and choose the inspiration
+deliberately; do not let the critic's default fill that gap.

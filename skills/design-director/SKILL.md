@@ -150,6 +150,10 @@ things follow:
 2. **The agent cannot judge its own work.** A separate critic looking only at
    a screenshot can.
 3. **AI adds and never subtracts.** Restraint has to be pushed for explicitly.
+   Pushed alone, it overshoots: the owner observed on 2026-10-29 that the
+   skill's output defaulted to hairline rules, tabular type and whitespace
+   whatever the surface, so material has to be pushed for as explicitly as
+   restraint.
 4. **Taste is the user's contribution.** The user's reactions make it theirs.
 
 A fifth, measured on 2026-09-11 on a bench of eleven real sites, three
@@ -207,6 +211,18 @@ from a photograph alone are not satisfiable by real pages.
 A new brief starts a new baseline. Regenerate only when the inspiration set
 changes, never to get a better number.
 
+## The aesthetic sentence
+
+One sentence, about feeling and identity, that the critic and the spot check
+receive every round. It must name a material or finish: paper, ink, brushed
+metal, lacquer, felt, glass, linen, concrete, phosphor, a saturated field, a
+photograph. It is the one positive input the critic always has, with or
+without a brief. A sentence with no material in it ("clean, precise,
+editorial") is the hairline ledger by another name; rewrite it before the
+first critic round. With no brief (the No brief answer, Skip, an autonomous
+run), this sentence is the whole counterweight. The design record keeps it
+under "Aesthetic statement".
+
 ## Discover — pick a direction (Redesign only)
 
 Read `references/discover.md` when running this stage.
@@ -216,8 +232,11 @@ fixed and open (`discover.md`, "What the seed is allowed to move"). Then the
 ideation ladder and at least three seeded directions, each its own file,
 each built and screenshotted, each moving at least two open axes, presented
 side by side with a one-line aesthetic statement each. Include one that
-seemed too risky. Run the divergence check before any critic: if two
-directions share layout, components and palette, rebuild before scoring.
+seemed too risky. At least one direction carries a filled or textured
+material as its finish, not paper and rules; if all three read as the same
+white ledger at thumbnail size, the divergence check fails on finish. Run the
+divergence check before any critic: if two directions share layout,
+components and palette, rebuild before scoring.
 
 **Score every direction before asking.** Each direction gets one Review
 critic round: three `opus` repeats, median logged. Show the user the three
@@ -278,8 +297,13 @@ Each round:
    (the volume cap below). Treat each gap as a diagnosis,
    not a prescription: when the critic says "add a section", ask whether
    removing or restructuring something solves the same gap. An added section
-   is the next round's AI tell. A rule that fails is a to-do for the tally,
-   not a reason the score is low; fix it when it is also a gap.
+   is the next round's AI tell. The reverse holds too: when three rounds of
+   gaps have all been removals, or the screen has no fill, weight or finish
+   left, the loop is converging on a hairline ledger. The next instruction
+   names what to add from the brief's vocabulary or the aesthetic sentence's
+   material before any further cut (`critic-prompt.md`, Reading the output).
+   A rule that fails is a to-do for the tally, not a reason the score is
+   low; fix it when it is also a gap.
 6. **Repeat**, within the cap.
 
 Stopping rules, fixed before round one:
@@ -326,11 +350,11 @@ headline.
 **Prefer native components.** On iOS, iOS controls. On the web, the design
 system if there is one.
 
-**Remove the AI tells** using the checklist in the reference. The checklist
-is a subtraction list, and subtraction alone converges on hairlines and
-whitespace. The brief's translation is the positive vocabulary; when the
-brief calls for filled cards, soft radii, or a saturated field, those are
-not tells on this surface.
+**Remove the AI tells** using the two lists in the reference, overdone and
+under-made; both are checked. Subtraction has a floor, the brief's
+translation or the material the aesthetic sentence names, and stops there.
+When the brief calls for filled cards, soft radii, or a saturated field,
+those are not tells on this surface, and a page stripped of them is.
 
 **Design the states that the task touches.** Empty, loading, error, partial,
 and "nothing to do here" are designed screens. Under Review, build and
@@ -388,7 +412,9 @@ or not the skill was otherwise invoked (in bb,
 pairwise against the last screenshot of that surface, the brief's rules
 tally, and at most two nudges. No score. Apply the top nudge if it is a
 one-line change. Escalate to a Review when the pairwise verdict is clearly
-"worse", a rule regressed, or the same nudge has been logged three times.
+"worse", a rule regressed, the same nudge has been logged three times, or
+the screen has no fill, weight or finish left that the aesthetic sentence
+or brief names.
 
 ## The design record
 

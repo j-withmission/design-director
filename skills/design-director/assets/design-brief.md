@@ -14,8 +14,10 @@ the route or file.
 ## Aesthetic statement
 
 One sentence. This is the line the critic receives every round, so make it
-about feeling and identity, not features. Example: "A field notebook from a
-1970s geological survey, precise and a little weathered."
+about feeling and identity, not features, and name a material or finish:
+without one the loop drifts to hairline rules and whitespace. Example: "A
+field notebook from a 1970s geological survey, precise and a little
+weathered: soft paper, pencil, one red ink stamp."
 
 >
 

@@ -61,6 +61,7 @@ as suggestion rather than rule:
 | Repeated characters (`kkk`, `77`) | Rhythm. Tight repetition → dense grid; sparse → generous spacing |
 | Digit sums, digit ratios | A type scale ratio, a column count, a border radius |
 | Letter clusters that almost spell something (`brnt`, `velv`) | A texture or motif: burnt, velvet, fog, chrome |
+| Vowel-to-consonant ratio, or the longest run without a digit | Material and finish. Vowel-heavy → soft and filled (felt, lacquer, a saturated field); consonant-heavy → hard and dry (concrete, paper, phosphor). Every seed reads a finish; a direction with no finish has not read its seed |
 | Uppercase vs lowercase balance | Formality. Mostly caps → institutional; mostly lower → casual |
 | Position of the first digit | Where the visual weight sits on the page |
 
@@ -94,11 +95,13 @@ a different grid, a different reading order, a different density, a
 different finish. When palette is open, it is one of the axes every
 direction moves: each direction reads its own palette from its own seed
 (the hex-looking runs, the hue the letter clusters suggest), and three
-directions sharing a field color and a tile set have not moved it. A
-pinned palette never closes the other axes, and a shared layout under
-three palettes is a theme, not a direction. When every axis is fixed, say
-so and stop: there is nothing for Discover to explore, and the tier should
-be Review.
+directions sharing a field color and a tile set have not moved it.
+Material is the axis that drifts to paper when no one reads it; every
+direction names its finish, and at least one is filled or textured rather
+than ruled. A pinned palette never closes the other axes, and a shared
+layout under three palettes is a theme, not a direction. When every axis is
+fixed, say so and stop: there is nothing for Discover to explore, and the
+tier should be Review.
 
 ## Technique 2: ambitious briefs
 
@@ -217,6 +220,8 @@ divergence check:
   density and finish count; a frame, a background tint or a shadow style
   alone does not. When palette is open, three directions on one field
   color with one tile set fail the check even if their structures differ.
+  Three white pages with different rule weights share a finish; that is one
+  material rendered three times.
 - If any two directions share layout, components and palette, that is one
   direction rendered twice. Rebuild the weaker one against different open
   axes before spending a critic. Three Opus repeats on the same page three

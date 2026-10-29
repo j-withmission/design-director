@@ -47,6 +47,7 @@ Walk the screen element by element, top to bottom, and for each one ask:
 | "Nothing" | Remove it |
 | "The user loses information they need" | Keep it, but check whether something else already conveys it |
 | "It looks emptier" | Remove it anyway, then fix the composition with spacing, not with a new element |
+| "The surface loses its material" (the fill, texture, weight or finish the brief or the aesthetic sentence names) | Keep it. Subtraction stops at the design's vocabulary, not at zero |
 | "The user can't complete the task" | Keep it |
 
 Usual casualties, in rough order of how often they should go:
@@ -64,6 +65,17 @@ Usual casualties, in rough order of how often they should go:
 
 After each cut, re-screenshot. The composition usually needs a spacing
 adjustment, not a replacement.
+
+### The floor
+
+Subtraction has a floor: the brief's translation or, without a brief, the
+material the aesthetic sentence names. A cut that removes the last fill, the
+last shadow, the last weight above a hairline, or the finish that made the
+direction a direction, has gone past the floor. The casualties list is not a
+style; a page that has lost everything on it is the under-made tell below.
+At the floor, the next move is composition, scale or material, not another
+cut. Record what was kept at the floor, and why, in the design record's "Cut
+in Deliver" list.
 
 ### Native components
 
@@ -141,8 +153,27 @@ are a verdict. Walk the list against the screenshot, not the code.
 - Gradient shimmer on buttons
 - Anything that moves without communicating state or affordance
 
+**Under-made** (the other failure; the one the lists above produce when run
+to zero)
+
+- Hairline rules doing all the structural work; nothing filled, nothing
+  weighted
+- Monospaced or tabular numerals on a surface that is not a ledger, log or
+  terminal
+- Small tracked uppercase labels above everything
+- One type size for body and one for display, both light, hierarchy carried
+  by caps and spacing alone
+- No material at all: no fill, texture, shadow, grain or finish anywhere,
+  white or near-white field by default
+- Whitespace used in place of a decision; the page reads as a wireframe that
+  was never dressed
+- The same "editorial" look on a product that is not editorial
+
 Fixing a tell means removing or replacing it, not decorating around it. A
-purple gradient with a noise overlay is still a purple gradient.
+purple gradient with a noise overlay is still a purple gradient. Fixing an
+under-made tell means adding the material the brief or the aesthetic
+sentence calls for, not decorating at random; a gradient dropped onto a
+wireframe is both tells at once.
 
 ## The states pass
 
@@ -170,6 +201,9 @@ list.
 
 - Subtraction pass done; the design record lists what was cut
 - Every tell in the checklist above checked against the current screenshot
+- Both tell lists checked: the page is neither decorated past the brief nor
+  stripped below its floor; the material the aesthetic sentence names is on
+  screen
 - Native components wherever custom ones weren't earning their place
 - States in scope built and screenshotted; out-of-scope states named as
   unstyled
