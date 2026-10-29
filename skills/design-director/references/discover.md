@@ -168,6 +168,12 @@ not deep.
 Twenty to forty one-liners. The point is to spark the user's imagination, not
 to be right.
 
+When the record pins a trends digest (`references/trends.md`), paste the
+whole digest after that prompt with one more line: "This is a read of this
+month's new sites. Make at least half the ideas counter its default rather
+than follow it." Half counter whatever the register answer; the ladder is
+for breadth, and the register narrows the field at Presenting directions.
+
 **2. Render the favorites and collect reactions, then sharpen.** Quick
 throwaway renders of the two or three the user picks, screenshotted. Then ask
 what they feel about each. The article's example, on "Industrial Control
@@ -245,6 +251,13 @@ the resolved world, not one layout.
 Never present a direction as a paragraph of description. People cannot react
 to "a warm, editorial layout with generous whitespace"; they can react to a
 picture of one.
+
+When the record pins a trends digest, the register answer shapes the three.
+Follow builds all three inside the month's default, Counter builds all three
+against it, and Directions differ (the answer when nobody gave one) makes one
+direction follow the default and one counter it, with the third free. Name
+each as follows, counters or neither in the directions table's Register
+column. Countering the default is not a return to the digest's Dated tells.
 
 After the user chooses, record all three in the design record's directions
 table, mark the winner, and write down why in the user's words. The losers are

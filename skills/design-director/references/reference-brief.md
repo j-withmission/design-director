@@ -121,7 +121,13 @@ regenerate the brief when it changes.
 2. Collect the code palette (above), and fill or delete the
    `[IF CODE PALETTE: ...]` block in the prompt. Do the same for the
    `[IF KEPT ELEMENTS: ...]` block.
-3. Spawn a `fable` subagent (fall back to `opus`, never `sonnet`; the brief
+3. Fill or delete the `[IF TRENDS: ...]` block. Fill it when the design
+   record pins a trends digest (`references/trends.md`; the register
+   question pins `trends/latest.md` from the skill directory when it is
+   present and the answer is not Ignore): paste three of its sections ("The
+   month's default", "Counter-moves", "Register tells"), its month, and the
+   register the user chose. Otherwise delete the block.
+4. Spawn a `fable` subagent (fall back to `opus`, never `sonnet`; the brief
    is read hundreds of times, so its quality is the cheapest place to spend).
    Its instructions begin:
 
@@ -138,14 +144,15 @@ regenerate the brief when it changes.
    than read, so the preamble becomes "The inspiration images are attached to
    this message, in this order: [FILE NAMES]. Do not open any files in the
    workspace." See `references/runtime-bb.md`.
-4. Save the output verbatim to `docs/design/briefs/<slug>.md` with a header
+5. Save the output verbatim to `docs/design/briefs/<slug>.md` with a header
    line recording date, model, source (images, current page, or both),
-   palette source (code, with the file, or images), image file names, and a
+   palette source (code, with the file, or images), image file names, the
+   trends digest's path and hash when one was filled in, and a
    hash
    (`shasum -a 256` of the brief text, first 12 characters). Put the path and
    hash in the design record.
-5. Regenerate only when the inspiration set, the code palette, or the kept
-   elements change. A new brief starts a new
+6. Regenerate only when the inspiration set, the code palette, the kept
+   elements, or the pinned trends digest change. A new brief starts a new
    baseline; scores across briefs are not comparable.
 
 Cost: one call, about 60 seconds and $0.35 on `fable`.
@@ -197,6 +204,22 @@ identity and stay:
 Treat them as settled. Describe them in the read, keep them in the
 resolution and translation, and write no rule that fails them.]
 
+[IF TRENDS: A digest of new sites from [YYYY-MM] reads the current register
+below. It is a fashion read, not taste: what most pages share this month is
+the default that will read as generic next. The user chose to [follow it |
+counter it | let the directions differ on it].
+
+--- Current register ---
+[THE MONTH'S DEFAULT, COUNTER-MOVES AND REGISTER TELLS SECTIONS]
+--- End of current register ---
+
+End the Resolution with one line saying whether this brief follows,
+counters or ignores the current default, and why. When the user let the
+directions differ, the brief ignores it and leaves the register to the
+directions, and its rules must hold for a direction on either side. No rule
+may be "be on trend" or its reverse; rules describe the resolved world, not
+the season.]
+
 Step 1. Read each image separately on five axes: palette, composition, focus,
 density, light and material. Be concrete: approximate hex values, proportions
 as percentages of the frame, positions as regions. Label each read with the
@@ -236,6 +259,7 @@ Resolution:
 - Focus: ...
 - Density: ...
 - Light and material: ...
+[IF TRENDS: - Register: follows | counters | ignores the current default, because ...]
 Translation:
 - Palette → ...
 - Composition → ...

@@ -8,3 +8,7 @@ dist/
 
 # Screenshots and generated assets are not ignored on purpose: a skill may
 # ship reference images later.
+
+# Trends scan screenshots are third-party sites in a public repo: never
+# committed. The manifest and the digest are text and are committed.
+skills/design-director/trends/*/shots/

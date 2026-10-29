@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# Run a design-director critic, spot check or brief pass as bb child threads.
+# Run a design-director critic, spot check, brief or trends pass as bb child
+# threads.
 #
 # Usage:
-#   bb-critics.sh --role critic|spot|brief --prompt-file <path> --out-dir <dir>
-#                 [--repeats N] [--image <png>]... [--provider <id>]
+#   bb-critics.sh --role critic|spot|brief|trends --prompt-file <path>
+#                 --out-dir <dir> [--repeats N] [--image <png>]... [--provider <id>]
 #                 [--model <id>] [--reasoning <level>] [--timeout <seconds>]
 #                 [--title <text>]
 #
@@ -16,6 +17,8 @@
 # text and any images as attachments. Output lands in <out-dir>/<role>-<n>.md.
 # For --role critic the script also parses the "Score: N/10" line from each
 # repeat and prints the configuration, the scores, the median and the spread.
+# --role trends is the monthly digest (references/trends.md): one repeat, one
+# --image per screenshot, no score.
 #
 # No `set -e`: a failing repeat must be named, not swallowed.
 set -u
@@ -45,15 +48,15 @@ while [ $# -gt 0 ]; do
     --reasoning)   reasoning="${2:-}"; shift 2 ;;
     --timeout)     timeout_s="${2:-}"; shift 2 ;;
     --title)       title="${2:-}"; shift 2 ;;
-    -h|--help)     sed -n '2,20p' "$0"; exit 0 ;;
+    -h|--help)     sed -n '2,23p' "$0"; exit 0 ;;
     *)             die "unknown argument: $1" ;;
   esac
 done
 
 case "$role" in
-  critic|spot|brief) ;;
-  "") die "--role is required (critic, spot or brief)" ;;
-  *)  die "--role must be critic, spot or brief, not '$role'" ;;
+  critic|spot|brief|trends) ;;
+  "") die "--role is required (critic, spot, brief or trends)" ;;
+  *)  die "--role must be critic, spot, brief or trends, not '$role'" ;;
 esac
 [ -n "$prompt_file" ] || die "--prompt-file is required"
 [ -r "$prompt_file" ] || die "prompt file not readable: $prompt_file"
@@ -138,12 +141,13 @@ if [ -z "$model" ]; then
         brief)  model="claude-fable-5-1"; has_model "$model" || model="claude-opus-5[1m]" ;;
         critic) model="claude-opus-5[1m]" ;;
         spot)   model="claude-sonnet-5" ;;
+        trends) model="claude-opus-5[1m]"; has_model "$model" || model="claude-fable-5-1" ;;
       esac
       ;;
     codex)
       model="gpt-5.6-sol"
       [ -n "$reasoning" ] || case "$role" in
-        brief|critic) reasoning="high" ;;
+        brief|critic|trends) reasoning="high" ;;
         spot)         reasoning="low" ;;
       esac
       ;;

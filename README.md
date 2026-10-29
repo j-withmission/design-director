@@ -69,6 +69,26 @@ what the score meant.
 | **Review** | A surface's baseline slipped: spot check escalated, or the user says "make this better" / "this looks off" | The critic loop on the existing direction, three critic repeats per round, median score | `opus` critic, session model implements | ~$0.35 and 2 min per round |
 | **Redesign** | New surface, or the user wants the highest score the direction can reach | Reference brief, then Discover diverge (three seeded directions, each scored), then the critic loop to plateau | `fable` brief, `opus` critic, session model implements | ~$3 to $5 for three directions plus four rounds |
 
+## Trends scan
+
+Once a month a script pulls about thirty new sites from public design
+galleries (the list is `trends/sources.md`, yours to edit), shoots their
+homepages, and one Opus pass writes a digest of what they share: the month's
+default look, the pages that worked against it, and the tells that mark a
+page as this season or as dated. A cloud routine runs it on the first of the
+month and opens a pull request; merging it is how the digest is accepted.
+Only text is committed, the digest and a list of hosts. The screenshots are
+third-party sites and are gitignored.
+
+A digest is a fashion read, not taste. What most pages share this month is
+the default that will look machine-made six months from now, so the skill
+never scores a page for being on trend. Under Redesign it asks which
+register you want: follow the month, counter it, ignore it, or let the
+directions differ, one following and one countering. The brief writer and
+Discover read the digest; the critic only reports a register line beside its
+score. About $1 to $3 a month. See
+[`references/trends.md`](skills/design-director/references/trends.md).
+
 ## Install
 
 Listed on [skills.sh](https://skills.sh/j-withmission/design-director/design-director).
@@ -197,14 +217,20 @@ skills/design-director/
     deliver.md                  subtraction pass, the AI tells checklist, states
     media-generation.md         image and video generation, and fallbacks without keys
     runtime-bb.md               running the skill in bb, on any provider
+    trends.md                   the monthly trends scan, the digest prompt, the routine
   assets/
     design-brief.md             the design record template
   scripts/
-    bb-critics.sh               critics, spot checks and briefs as bb child threads
+    bb-critics.sh               critics, spot checks, briefs and digests as bb child threads
     seed.sh                     random seed string from /dev/urandom
     shot.sh                     headless Chrome screenshot to a PNG
     shoot-auth.mjs              screenshots behind a login, one Chrome per run
     lighthouse.sh               Lighthouse audit with an accessibility gate
+    trends.sh                   collect and screenshot a month's new sites
+  trends/
+    sources.md                  the galleries the scan reads, editable
+    seen.txt                    hosts already shot, so each month is new sites
+    YYYY-MM.md, latest.md       the digests (none until the first scan)
 ```
 
 [SKILL.md](skills/design-director/SKILL.md) is the actual process and is worth
