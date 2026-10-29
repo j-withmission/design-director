@@ -63,6 +63,15 @@ Kept elements (confirmed by the owner, passed to the brief writer):
 Regenerating the brief (new images, palette or kept elements) starts a new baseline; scores across
 briefs are not comparable.
 
+## Trends digest
+
+The month's register read (`references/trends.md` in the design-director
+skill), pinned when the register question is answered and kept until the
+loop ends. A newer digest landing mid-loop does not change this line. Cite
+the dated file, never `latest.md`.
+
+Digest: `trends/YYYY-MM.md` · hash: · pinned: [date] · register: follow | counter | ignore | directions differ (decided by: user | default)
+
 ## Baseline
 
 One row per surface. The baseline is the median of three critic scores from
@@ -75,7 +84,8 @@ in the row.
 
 Configuration is the critic model, and in bb the provider too:
 `opus` in Claude Code, `claude-code/claude-opus-5[1m]/high` or
-`codex/gpt-5.6-sol/high` in bb. Scores from two configurations are two
+`codex/gpt-5.6-sol/high` in bb. When a trends digest is pinned, its hash
+follows: `opus · digest 3fa9c2e81b07`. Scores from two configurations are two
 scales; never compare them or carry a baseline across them.
 
 ## Directions explored
@@ -83,9 +93,9 @@ scales; never compare them or carry a baseline across them.
 Every direction rendered in Discover, including the ones not chosen. Keep the
 screenshots; they are the fastest way to explain the decision later.
 
-| Name | Seed | File | Open axes moved | One line | Screenshot | Chosen? |
-|---|---|---|---|---|---|---|
-| | | | | | | |
+| Name | Seed | File | Open axes moved | Register (follows / counters / neither) | One line | Screenshot | Chosen? |
+|---|---|---|---|---|---|---|---|
+| | | | | | | | |
 
 Each direction is its own file. Divergence check (per pair, what differs at
 thumbnail size; rebuilt if two shared layout, components and palette):
@@ -99,12 +109,15 @@ Why the chosen one won, in the user's words if possible:
 One row per Review or Redesign round. The critic prompt is
 `references/critic-prompt.md` in the design-director skill and is not changed
 between rounds. Score is the median of three repeats; spread is min–max.
-Rules passed is the brief's tally and never feeds the score.
+Rules passed is the brief's tally and never feeds the score. Configuration
+carries the digest hash when one is pinned, as in Baseline. Register is the
+critic's Register line when a digest is pinned (median critique); it never
+feeds the score either.
 
-| Round | Date | Tier | Configuration | Score (median) | Spread | Rules passed | Top 3 gaps |
-|---|---|---|---|---|---|---|---|
-| 0 (baseline) | | | | | | | |
-| 1 | | | | | | | |
+| Round | Date | Tier | Configuration | Score (median) | Spread | Rules passed | Register | Top 3 gaps |
+|---|---|---|---|---|---|---|---|---|
+| 0 (baseline) | | | | | | | | |
+| 1 | | | | | | | | |
 
 Stopped because: [baseline + 1 reached / two rounds without a point / plateau over three rounds / reached 9]
 

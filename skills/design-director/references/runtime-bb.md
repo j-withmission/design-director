@@ -54,10 +54,18 @@ This surface has no inspiration brief. How should I make one?
 The code defines a palette. Is it decided, or should the directions vary it?
   1. Keep it
   2. Open it
+
+A trends digest for [YYYY-MM] exists. What register should the directions take?
+  1. Follow it
+  2. Counter it
+  3. Ignore it
+  4. Directions differ
 ```
 
 The palette question is asked only under Redesign, when the product defines
-its colors in code. Unanswered, the palette is open.
+its colors in code. Unanswered, the palette is open. The register question
+is asked only under Redesign, when `trends/latest.md` exists in the skill
+directory (`references/trends.md`). Unanswered, the directions differ.
 
 Read no reference, run no script and spawn no thread until the answer comes
 back. On an autonomous run with nobody to answer, the default is **Skip**,
@@ -75,11 +83,11 @@ In order:
 
 Then role to model, from `bb provider models <provider> --json`:
 
-| Provider | Brief | Critic | Spot |
-|---|---|---|---|
-| `claude-code` | `claude-fable-5-1`, else `claude-opus-5[1m]` | `claude-opus-5[1m]` | `claude-sonnet-5` |
-| `codex` | `gpt-5.6-sol`, reasoning high | `gpt-5.6-sol`, reasoning high | `gpt-5.6-sol`, reasoning low |
-| anything else | the catalog's `isDefault` model at its `defaultReasoningEffort` | same | same |
+| Provider | Brief | Critic | Spot | Trends |
+|---|---|---|---|---|
+| `claude-code` | `claude-fable-5-1`, else `claude-opus-5[1m]` | `claude-opus-5[1m]` | `claude-sonnet-5` | `claude-opus-5[1m]`, else `claude-fable-5-1` |
+| `codex` | `gpt-5.6-sol`, reasoning high | `gpt-5.6-sol`, reasoning high | `gpt-5.6-sol`, reasoning low | `gpt-5.6-sol`, reasoning high |
+| anything else | the catalog's `isDefault` model at its `defaultReasoningEffort` | same | same | same |
 
 Never `haiku`, on any role. `bb-critics.sh` refuses it.
 
@@ -96,7 +104,8 @@ So every baseline row, every critic round and every spot row in the design
 record carries a **configuration** value next to the score:
 `claude-code/claude-opus-5[1m]/high`, `codex/gpt-5.6-sol/high`. Changing the
 provider or the model starts a new baseline row, the same as changing the
-prompt or the brief hash. `bb-critics.sh` prints the string to paste.
+prompt, the brief hash or the pinned trends digest's hash.
+`bb-critics.sh` prints the string to paste.
 
 ## Spawning a critic
 
@@ -134,8 +143,9 @@ One critic is one hidden child thread:
   and then the prompt from `critic-prompt.md`, **byte-identical** from there
   on. Attaching is what keeps the critic honest here, the way the single Read
   does in Claude Code.
-- The prompt is the preamble, the critic prompt, the aesthetic sentence and
-  the brief text. Still no code, no diff, no previous critique, no round
+- The prompt is the preamble, the critic prompt, the aesthetic sentence,
+  the brief text, and the pinned trends digest's Register tells when the
+  record names one. Still no code, no diff, no previous critique, no round
   number, no images of the inspiration.
 
 Then, in order: spawn all three, `bb thread wait <id> --status idle --timeout
@@ -154,8 +164,9 @@ scripts/bb-critics.sh --role critic --repeats 3 \
 ```
 
 It prints the configuration, each repeat's score, the median and the spread,
-and the path of each critique. `--role spot` and `--role brief` take the same
-flags with the role's model; `--provider`, `--model` and `--reasoning`
+and the path of each critique. `--role spot`, `--role brief` and
+`--role trends` (the monthly digest, one `--image` per screenshot) take the
+same flags with the role's model; `--provider`, `--model` and `--reasoning`
 override the resolution above.
 
 ## When a child fails

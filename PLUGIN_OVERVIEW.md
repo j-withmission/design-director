@@ -23,6 +23,14 @@ critic round with its median and spread, the Lighthouse scores, and the
 directions that were rejected with the model and date each was tried — so a
 direction that failed this month can be retried on a newer model.
 
+An optional monthly trends scan reads about thirty new sites from public
+design galleries and writes a digest of the month's default look, merged by
+pull request. It is a fashion read, not a score: the critic only reports
+whether a page reads on-trend, counter-trend or dated, and under Redesign
+you choose whether the directions follow the month, counter it, or ignore
+it. Only text is committed; the screenshots of other people's sites never
+are.
+
 ## How it works
 
 In bb each critic is a hidden child thread spawned with `bb thread spawn`, with

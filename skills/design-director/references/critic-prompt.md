@@ -8,7 +8,11 @@ instructions instead.
 The prompt changed on 2026-10-29: step 2 names material as a studio move,
 and step 4 counts an under-made page as a tell. Scores from before that date
 are a different configuration and are not comparable with later ones. Log
-the prompt date next to the configuration string in the record.
+the prompt date next to the configuration string in the record. When the
+record pins a trends digest, its hash is part of the configuration too, next
+to the brief hash: the `[IF TRENDS: ...]` block changes the prompt, so a
+round with it and a round without it are two configurations, and so are two
+rounds with different digests.
 
 The critic gets a **fresh context** each round and sees **only** what is
 listed under Inputs. No code, no diff, no previous critique, no round number,
@@ -29,6 +33,9 @@ scoring into negotiation.
   (`references/reference-brief.md`). **Never the inspiration images
   themselves.** The `[IF BRIEF: ...]` blocks below are included only when a
   brief exists; without one, delete them and the prompt is the original.
+- The **Register tells** section of the pinned trends digest, when the
+  record names one (`references/trends.md`); never the digest's site list or
+  screenshots. The `[IF TRENDS: ...]` blocks below are included only then.
 
 ## Two numbers, kept apart
 
@@ -109,6 +116,21 @@ The Biggest gaps should still, when fixed, move the design toward the
 reference's world as the brief describes it. Rank by impact on quality, not
 by rule number.]
 
+[IF TRENDS: A digest of a recent month's new sites lists the patterns that
+mark a page as made this season and those that mark it as last season or
+earlier:
+
+--- Register tells ---
+[REGISTER TELLS SECTION]
+--- End of register tells ---
+
+Register. Say whether the screenshot reads on-trend, counter-trend (made
+now, deliberately against the season's default) or dated, with one line of
+evidence naming the tells you see. This is a separate judgement, kept apart
+like the rules check: it does not feed the score, and none of the three is
+better than the others. Judge the AI tells and the score as you would
+without this list.]
+
 Work through this in order:
 
 1. Aesthetic as read. In one line, say what aesthetic the screenshot is
@@ -146,6 +168,7 @@ Respond in exactly this structure:
 [IF BRIEF: Rules check:
 - Rule 1: pass | fail — one line
 - ...]
+[IF TRENDS: Register: on-trend | counter-trend | dated — one line]
 Aesthetic as read: ...
 Studio execution:
 - ...
@@ -187,6 +210,11 @@ similar density).
 - **Rules check** goes into the record's tally column. A rule that fails
   three rounds running is either the next gap to take or a rule the user
   should decide to drop; say which.
+- **Register** goes in the record's Register column. It moves nothing by
+  itself: not the score, not the gaps, not the order of fixes. The user's
+  register answer in the record says whether on-trend or counter-trend was
+  the goal; a `dated` line, or a line that misses that goal two rounds
+  running, goes to the user as a question, not to the implementer as a gap.
 - **AI tells** map directly onto the checklist in `deliver.md`; a tell that
   survives two rounds is a sign the implementer is decorating around it rather
   than removing it.

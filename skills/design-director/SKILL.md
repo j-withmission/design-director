@@ -128,6 +128,21 @@ call, whether or not a brief exists:
 Record the answer in the design record's axes table. Without an answer,
 the palette is open; a palette nobody chose is not a constraint.
 
+**Ask about the register under Redesign.** When the tier is Redesign and
+`trends/latest.md` exists in this skill's directory, add a fourth question
+to the same call (`references/trends.md`, The register question):
+
+- Question: "A trends digest for [YYYY-MM] exists. What register should
+  the directions take?"
+- Options, in this order: **Follow it** (build inside the month's default),
+  **Counter it** (build against it), **Ignore it** (run as if there were no
+  digest), or **Directions differ** (one direction follows, one counters).
+
+Any answer but Ignore pins that digest in the design record. Without an
+answer, the directions differ. When `trends/latest.md` does not exist, ask
+nothing and say nothing; the scan is optional. Checking for the file is a
+file check, allowed before the gate like the brief check.
+
 The spot check, which runs without the gate, does the same look-first check
 and asks the brief question on its own the first time it meets a surface
 with no brief and no recorded decline.
@@ -182,6 +197,7 @@ that already has an identity throws away work.
 | The design has a clear identity; the ask is to ship it | Review | **Deliver** |
 | "Retry the rejected prompts", "re-score this", "what did we try" | — | **The design record** (below) |
 | "Lighthouse this", "audit accessibility", "is this page accessible" | — | **The Lighthouse pass** in Deliver, standalone, no gate question needed |
+| "Scan trends", "what's on trend", "run the trends scan", "is this dated" | — | `references/trends.md`, standalone, no gate question |
 | A chart or dashboard is involved | any | Load `dataviz` first, then continue here |
 | The output is a published artifact | any | Load `artifact-design` first, then continue here |
 
@@ -286,7 +302,8 @@ Each round:
    `scripts/bb-critics.sh --role critic --repeats 3 --image <png>
    --prompt-file <prompt> --out-dir <dir>`. Each critic gets: the preamble
    (Read-only in Claude Code, "the screenshot is attached" in bb), the
-   screenshot, the aesthetic statement, and the **brief text** if one exists.
+   screenshot, the aesthetic statement, the **brief text** if one exists, and
+   the pinned trends digest's register tells if the record pins one.
    No inspiration images, code, implementation notes, previous critiques,
    round number, or effort.
 4. **Use the fixed prompt** in `references/critic-prompt.md`, unchanged from
@@ -319,7 +336,8 @@ Stopping rules, fixed before round one:
   the layout or go back to Discover.
 - **Never tell the critic the target score or the baseline.**
 - **Scores compare only within one configuration**: same prompt, same
-  critic model, same brief hash, and in bb the same provider. Changing any
+  critic model, same brief hash, the same pinned trends digest hash when
+  there is one, and in bb the same provider. Changing any
   of them starts a new baseline row; say so in the record. In bb, log the
   configuration string `bb-critics.sh` prints next to every score.
 
@@ -416,6 +434,22 @@ one-line change. Escalate to a Review when the pairwise verdict is clearly
 the screen has no fill, weight or finish left that the aesthetic sentence
 or brief names.
 
+## Trends
+
+A monthly scan of new sites from public design galleries, read by one
+`opus` pass into a digest (`references/trends.md`). The digest lives in
+`trends/` in this skill's directory: `trends/YYYY-MM.md` per month,
+`trends/latest.md` as a copy of the newest. A digest is a fashion read, not
+taste: what most pages share this month is the default that reads as
+"AI-made" six months later, so it is as much a list to avoid as a list to
+follow, and the user decides the register. The brief writer and Discover
+get the digest; the critic gets only its register tells and reports a
+`Register:` line that never feeds the score; no critic ever sees the sites
+or the screenshots, and the spot check gets nothing. A design record pins
+the digest it started with, by path and hash, until the loop ends. A cloud
+routine runs the scan on the first of each month and opens a pull request;
+merging it is how the owner accepts a digest.
+
 ## The design record
 
 Every design gets a record, created at Discover (or at the first Review) and
@@ -444,6 +478,7 @@ updating the table.
 | Role | Model | Why (measured 2026-09-11) |
 |---|---|---|
 | Reference brief | `fable`, else `opus` | Written once, read hundreds of times; the two-image brief resolved a dark photograph against a light page into one coherent direction with attainable rules |
+| Trends digest | `opus`, else `fable`, one call a month | One vision pass over about thirty screenshots; a read, not a score, so repeats are not needed |
 | Spot check, pairwise | `sonnet` | 10 s and 0.03 USD; 20/20 on known regressions, no order bias, 91% rule agreement with the Opus critic |
 | Scoring critic (Review, Redesign) | `opus`, three repeats, median | Widest useful range (3–8) and 8 of 11 samples within a point across repeats; Sonnet compressed to 3–6 and bounced 1–7 on one sample |
 | Critic synthesis pass | none | A Fable pass over Sonnet plus Opus critiques sharpened the gap text but left the score where it was, at six times the cost |
@@ -514,8 +549,10 @@ second build. So:
   brief", goes in the record.
 - Don't run more than two implementers at once or launch a Chrome per agent;
   see Resource budget.
-- Don't hand the critic code, diffs, previous critiques, or the inspiration
-  images. It gets the screenshot, the aesthetic sentence, and the brief.
+- Don't hand the critic code, diffs, previous critiques, the inspiration
+  images, or a trends digest's sites and screenshots. It gets the
+  screenshot, the aesthetic sentence, the brief, and the pinned digest's
+  register tells.
 - Don't let a brief guess colors the code already defines. Collect the
   palette tokens and pass them to the brief writer.
 - Don't reuse a critic context across rounds or across repeats.
