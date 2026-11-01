@@ -152,8 +152,38 @@ Dated:
 4. Copy it to `trends/latest.md`: a copy, not a symlink, so the file
    survives every install route.
 5. Commit the digest, `latest.md`, the month's `manifest.tsv` and
-   `seen.txt`. Never the `shots/` folder: those are third-party screenshots
+   `seen.txt`, and the sketches once they exist (below). Never the `shots/` folder: those are third-party screenshots
    and this repo is public; `.gitignore` excludes `trends/*/shots/`.
+
+## Sketches
+
+After the digest, the writer makes four quick sketches of the month's
+default, so the owner can see the register the digest describes, not only
+read it. Each one is a single 1280×1200 HTML page built from its own seed:
+
+1. Run `scripts/seed.sh` four times, one seed per sketch. Never make up a
+   seed (`discover.md`, Technique 1).
+2. Hold the month's default fixed: ground, type treatment, nav, layout
+   pattern and material come from "The month's default" and the On-trend
+   tells. Read each seed into what stays open: the subject (a made-up
+   organisation, never a real brand or one of the month's sites), the
+   accent or field colour inside the default's palette, the composition
+   among the default's patterns, and the finish. Four sketches that share a
+   subject, a colour and a layout are one sketch.
+3. Write each as `trends/YYYY-MM/sketches/NN.html` (01–04): self-contained,
+   local font stacks with fallbacks, no network requests, no copied
+   imagery. Draw objects and photos with CSS or inline SVG. Never show the
+   seed on the page.
+4. Shoot each with `scripts/shot.sh <html> <png>` to
+   `trends/YYYY-MM/sketches/NN.png`. Look at every PNG: fix any overflow or
+   clipped text and shoot again.
+5. Write `trends/YYYY-MM/sketches.md`: the digest hash, then one table row
+   per sketch with its seed, the reading and a one-line statement.
+
+Sketches are original work and are committed, unlike the screenshots. They
+illustrate the digest; they are not targets. The brief writer, Discover and
+the critic never get them, for the same reason the critic never gets the
+digest as a target: a picture of a look handed to the loop becomes the look.
 
 ## How the digest is used
 
@@ -299,29 +329,42 @@ failed and its output.
    line, then the body, and copy that file to
    skills/design-director/trends/latest.md (a copy, not a symlink). In the
    header, model is the model you are running as.
-8. Stage exactly these four paths:
+8. Read the section "Sketches" in
+   skills/design-director/references/trends.md and make the four sketches
+   it describes, yourself, from four runs of
+   skills/design-director/scripts/seed.sh. Write
+   skills/design-director/trends/$MONTH/sketches/01.html to 04.html, shoot
+   each to the matching .png with skills/design-director/scripts/shot.sh,
+   look at every PNG and fix what is clipped, then write
+   skills/design-director/trends/$MONTH/sketches.md.
+9. Stage exactly these paths:
    skills/design-director/trends/$MONTH.md,
    skills/design-director/trends/latest.md,
    skills/design-director/trends/$MONTH/manifest.tsv,
-   skills/design-director/trends/seen.txt.
+   skills/design-director/trends/seen.txt,
+   skills/design-director/trends/$MONTH/sketches.md,
+   skills/design-director/trends/$MONTH/sketches/.
    Run `git status --short` and confirm nothing under a shots/ folder is
    staged; the screenshots are third-party sites and are never committed.
    Commit with the message "Trends digest $MONTH".
-9. Push: `git push -u origin trends/$MONTH`.
-10. Open a pull request with gh, base the default branch, titled
+10. Push: `git push -u origin trends/$MONTH`.
+11. Open a pull request with gh, or the GitHub connector if gh is not
+    available, base the default branch, titled
     "Trends digest $MONTH". The body is the digest's "The month's default"
     section verbatim, then a blank line, then one line: "Sites read: N of
     30 asked, from SOURCES. Failed shots: F. Hash: H." with the numbers
-    filled in, then a blank line, then exactly this line:
+    filled in, then a blank line, then one line: "Sketches: 4, in
+    skills/design-director/trends/$MONTH/sketches/." then a blank line,
+    then exactly this line:
     🤖 Generated with [Claude Code](https://claude.com/claude-code)
-11. Report the pull request URL and the counts.
+12. Report the pull request URL and the counts.
 ```
 
 **By hand, locally.** The same steps from a clone of the repository: run
 `trends.sh` into `skills/design-director/trends/YYYY-MM`, spawn one `opus`
 subagent (else `fable`) with the preamble and the prompt above and the shot
 paths from the manifest, save and copy the digest as "Storing the digest"
-says, and commit the four text files on a `trends/YYYY-MM` branch for a
+says, make the sketches as "Sketches" says, and commit the four text files and the sketches on a `trends/YYYY-MM` branch for a
 pull request. In bb, the digest pass is `scripts/bb-critics.sh --role trends
 --repeats 1 --prompt-file <prompt> --out-dir <dir>` with one `--image` per
 shot. Delete the `shots/` folder once the digest is merged; nothing reads it

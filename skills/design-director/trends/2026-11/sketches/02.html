@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Eve Radio</title>
+<style>
+  :root{--ground:#0A0A0A;--ink:#EDEDED;--dim:#8A8A8A;--lime:#D4E83A}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1280px;height:1200px;overflow:hidden;background:var(--ground);color:var(--ink);font-family:"Inter",system-ui,sans-serif}
+  .word{position:absolute;top:-30px;left:0;right:0;text-align:center;font-family:"Inter Display","Inter",sans-serif;font-weight:900;font-size:286px;line-height:1;letter-spacing:-.03em;white-space:nowrap}
+  nav{position:absolute;top:300px;left:40px;right:40px;display:flex;justify-content:space-between;font-size:14px;color:var(--ink)}
+  nav span:nth-child(n+2){color:var(--dim)}
+  .stage{position:absolute;left:50%;top:430px;transform:translateX(-50%);width:420px;height:420px;perspective:1100px}
+  .cube{position:absolute;inset:60px;transform-style:preserve-3d;transform:rotateX(-18deg) rotateY(38deg)}
+  .f{position:absolute;width:300px;height:300px;border:1px solid rgba(255,255,255,.35);
+     background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.03) 45%,rgba(255,255,255,.10))}
+  .f1{transform:translateZ(150px)}.f2{transform:rotateY(180deg) translateZ(150px)}
+  .f3{transform:rotateY(90deg) translateZ(150px)}.f4{transform:rotateY(-90deg) translateZ(150px)}
+  .f5{transform:rotateX(90deg) translateZ(150px);background:linear-gradient(135deg,rgba(255,255,255,.28),rgba(255,255,255,.06))}
+  .f6{transform:rotateX(-90deg) translateZ(150px)}
+  .dial{position:absolute;left:75px;top:75px;width:150px;height:150px;border-radius:50%;border:1px solid rgba(255,255,255,.5);
+        background:repeating-conic-gradient(rgba(255,255,255,.35) 0 1deg,transparent 1deg 15deg)}
+  .needle{position:absolute;left:148px;top:30px;width:3px;height:120px;background:var(--lime);transform-origin:bottom;transform:rotate(28deg)}
+  .shadow{position:absolute;left:50%;top:880px;transform:translateX(-50%);width:360px;height:26px;border-radius:50%;background:radial-gradient(rgba(0,0,0,.9),rgba(0,0,0,0) 70%);box-shadow:0 -1px 0 rgba(255,255,255,.04)}
+  .grain{position:absolute;inset:0;opacity:.09;pointer-events:none}
+  .foot{position:absolute;left:40px;bottom:40px;max-width:420px}
+  .foot small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:14px}
+  .foot h1{font-weight:500;font-size:40px;line-height:1.08;letter-spacing:-.02em}
+  .pill{position:absolute;right:40px;bottom:40px;display:flex;align-items:center;gap:14px;background:var(--lime);color:#0A0A0A;border-radius:999px;padding:8px 8px 8px 26px;font-size:16px;font-weight:500}
+  .pill b{width:40px;height:40px;border-radius:50%;background:#0A0A0A;color:var(--lime);display:grid;place-items:center;font-weight:400}
+  .status{position:absolute;right:40px;bottom:120px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  .status i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--lime);margin-right:10px;vertical-align:1px}
+</style></head><body>
+<div class="word">EVE RADIO</div>
+<nav><span>Tonight</span><span>Schedule</span><span>Archive</span><span>Hosts</span><span>Listen</span></nav>
+<div class="stage"><div class="cube">
+  <div class="f f1"><div class="dial"></div><div class="needle"></div></div>
+  <div class="f f2"></div><div class="f f3"></div><div class="f f4"></div><div class="f f5"></div><div class="f f6"></div>
+</div></div>
+<div class="shadow"></div>
+<div class="status"><i></i>On air · 02:14 · Rotterdam</div>
+<div class="foot"><small>Night radio · 22:00–06:00</small><h1>Eight hours of sound for people still awake.</h1></div>
+<div class="pill">Tune in <b>↗</b></div>
+<svg class="grain" width="1280" height="1200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="5"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+<script>document.fonts.ready.then(()=>{const w=document.querySelector(".word");const s=getComputedStyle(w);const sx=(s.transform.match(/matrix\(([^,]+)/)||[0,1])[1]*1;w.style.display="inline-block";w.style.left="50%";w.style.right="auto";const need=1248/(w.scrollWidth*sx);w.style.fontSize=(parseFloat(s.fontSize)*need)+"px";w.style.transform=(sx!==1?"translateX(-50%) scaleX("+sx+")":"translateX(-50%)");});</script>
+</body></html>
