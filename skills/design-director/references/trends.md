@@ -348,7 +348,8 @@ failed and its output.
    staged; the screenshots are third-party sites and are never committed.
    Commit with the message "Trends digest $MONTH".
 10. Push: `git push -u origin trends/$MONTH`.
-11. Open a pull request with gh, base the default branch, titled
+11. Open a pull request with gh, or the GitHub connector if gh is not
+    available, base the default branch, titled
     "Trends digest $MONTH". The body is the digest's "The month's default"
     section verbatim, then a blank line, then one line: "Sites read: N of
     30 asked, from SOURCES. Failed shots: F. Hash: H." with the numbers
