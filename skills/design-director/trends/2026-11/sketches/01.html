@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Damworks</title>
+<style>
+  :root{--ground:#D8D6D2;--ink:#111111;--dim:#6E6B66;--accent:#2F8F5B}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1280px;height:1200px;overflow:hidden;background:var(--ground);color:var(--ink);font-family:"Inter",system-ui,sans-serif}
+  .corner{position:absolute;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+  .tl{top:24px;left:24px}.tc{top:24px;left:50%;transform:translateX(-50%)}.tr{top:24px;right:24px}
+  .loc{position:absolute;top:120px;left:24px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  .loc i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:10px;vertical-align:1px}
+  .plate{position:absolute;left:50%;top:190px;transform:translateX(-50%);width:560px;height:640px;overflow:hidden;
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.18),rgba(0,0,0,.35)),
+      repeating-linear-gradient(90deg,#8d8a85 0 22px,#7b7873 22px 24px,#96938e 24px 61px,#6f6c68 61px 63px),
+      #8a8781;}
+  .plate:before{content:"";position:absolute;left:0;right:0;top:0;height:120px;background:linear-gradient(180deg,#e9e8e4,#bdbab4)}
+  .plate:after{content:"";position:absolute;left:-10%;right:-10%;bottom:0;height:150px;
+    background:repeating-linear-gradient(180deg,rgba(255,255,255,.55) 0 2px,rgba(255,255,255,0) 2px 9px),linear-gradient(180deg,#3d3b38,#1e1d1b)}
+  .spill{position:absolute;left:180px;width:200px;top:120px;bottom:150px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55) 30%,rgba(255,255,255,.75) 50%,rgba(255,255,255,.55) 70%,rgba(255,255,255,0));filter:blur(3px)}
+  .grain{position:absolute;inset:0;mix-blend-mode:multiply;opacity:.55}
+  .cap{position:absolute;left:50%;top:846px;transform:translateX(-50%);width:560px;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  .word{position:absolute;left:0;right:0;bottom:-.17em;text-align:center;font-family:"Inter Display","Inter",sans-serif;font-weight:900;font-size:300px;line-height:1;letter-spacing:-.02em;transform:scaleX(1.22);white-space:nowrap}
+</style></head><body>
+<div class="corner tl">Archive</div><div class="corner tc">Damworks</div><div class="corner tr">Visit</div>
+<div class="loc"><i></i>Hydraulic archive · Canton Uri</div>
+<div class="plate"><div class="spill"></div>
+<svg class="grain" width="560" height="640"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="77"/><feColorMatrix values="0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .9 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg></div>
+<div class="cap"><span>Spillway 03, 1961</span><span>41 m</span></div>
+<div class="word">DAMWORKS</div>
+<script>document.fonts.ready.then(()=>{const w=document.querySelector(".word");const s=getComputedStyle(w);const sx=(s.transform.match(/matrix\(([^,]+)/)||[0,1])[1]*1;w.style.display="inline-block";w.style.left="50%";w.style.right="auto";const need=1248/(w.scrollWidth*sx);w.style.fontSize=(parseFloat(s.fontSize)*need)+"px";w.style.transform=(sx!==1?"translateX(-50%) scaleX("+sx+")":"translateX(-50%)");});</script>
+</body></html>

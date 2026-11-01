@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Open Ends</title>
+<style>
+  :root{--field:#E63A30;--ink:#0B0B0B}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1280px;height:1200px;overflow:hidden;background:var(--field);color:var(--ink);font-family:"Inter",system-ui,sans-serif}
+  .word{position:absolute;top:6px;left:0;right:0;text-align:center;font-family:"JetBrains Mono",monospace;font-weight:800;font-size:178px;line-height:1;letter-spacing:-.04em;white-space:nowrap}
+  .sub{position:absolute;top:214px;left:20px;right:20px;display:flex;justify-content:space-between;font-size:13px;font-weight:600}
+  .orb{position:absolute;left:50%;top:600px;transform:translate(-50%,-50%);width:360px;height:360px;border-radius:50%;
+    background:
+      radial-gradient(circle at 34% 28%,#ffffff 0 4%,rgba(255,255,255,.0) 12%),
+      radial-gradient(ellipse 120% 60% at 50% 105%,#E63A30 0%,rgba(230,58,48,0) 55%),
+      linear-gradient(180deg,#f2f2f2 0%,#9a9a9a 38%,#2a2a2a 50%,#bdbdbd 54%,#5a5a5a 80%,#1a1a1a 100%);
+    box-shadow:inset -18px -24px 50px rgba(0,0,0,.45),inset 10px 12px 30px rgba(255,255,255,.35)}
+  .orb:after{content:"";position:absolute;left:8%;right:8%;top:48%;height:3px;background:rgba(255,255,255,.7);border-radius:50%;filter:blur(1px)}
+  .contact{position:absolute;left:50%;top:790px;transform:translateX(-50%);width:300px;height:30px;border-radius:50%;background:radial-gradient(rgba(60,0,0,.55),rgba(60,0,0,0) 70%)}
+  .grid{position:absolute;left:20px;right:20px;bottom:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;font-size:13px;line-height:1.35}
+  .grid b{display:block;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+  .hint{position:absolute;left:50%;top:850px;transform:translateX(-50%);font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+</style></head><body>
+<div class="word">OPEN&nbsp;ENDS&nbsp;26</div>
+<div class="sub"><span>Architecture biennale · Ghent</span><span>Programme</span><span>Venues</span><span>Tickets</span><span>12.03 — 30.05</span></div>
+<div class="orb"></div><div class="contact"></div>
+<div class="hint">// drag the sphere</div>
+<div class="grid">
+  <div><b>01 · Unfinished</b>Forty buildings left open on purpose, and the people who live in them.</div>
+  <div><b>02 · Venues</b>Eleven sites across the city, two of them still under scaffold.</div>
+  <div><b>03 · Talks</b>Every Thursday evening in the old wool hall.</div>
+  <div><b>04 · Visit</b>One pass for every venue, eleven weeks.</div>
+</div>
+</body></html>
