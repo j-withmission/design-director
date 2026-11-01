@@ -1,88 +1,98 @@
-Trends digest 2026-10 · date: 2026-10-29 · model: claude-opus-5-5 · sites: 29 of 30 · sources: httpster.net, minimal.gallery, onepagelove.com, www.awwwards.com, www.darkmodedesign.com · manifest: trends/2026-10/manifest.tsv · hash: e26968ee8dc7
+Trends digest 2026-11 · date: 2026-11-01 · model: claude-opus-5-5 · sites: 29 of 30 · sources: httpster.net, minimal.gallery, onepagelove.com, www.darkmodedesign.com · manifest: trends/2026-11/manifest.tsv · hash: 9afe53c07712
 
-Sites read: 29, from httpster.net, minimal.gallery, onepagelove.com, www.awwwards.com, www.darkmodedesign.com
+Sites read: 29, from httpster.net, minimal.gallery, onepagelove.com, www.darkmodedesign.com
 
 The month's default:
-- Grayscale ground with no brand colour. About 15 of 29 pages are near-black (#0A0A0A–#121212; four are pure #000) with off-white text (#EDEDED–#F2F2F2). Most of the rest are white or a cool off-white (#F0F0F0–#F7F7F7), almost never a warm cream. The only colour comes from photos and screenshots.
-- A neo-grotesk sans does all the work, in sentence case. Nav and metadata are 13–16px regular. Headlines are 48–90px, weight 500–600, tracked tight (about −2% to −4%), usually two lines ending in a full stop.
-- The first frame is nearly empty. About 10 of 29 show only a loader, a counter, an intro line or a blank stage on load. Most of the others put one object or one short line in a large empty field.
-- The nav is a few plain text links with no bar and no border, spread to the corners or to three points across the top. Product pages instead pair a few links with a black pill CTA at top right.
-- Product pages use a centred stack: headline, then a grey subline, then a black pill CTA, then an app screenshot in macOS window chrome (traffic-light dots) rising from the fold. About 5 of the roughly 9 product pages do this.
+- Light ground is back as the majority. About 17 of 29 pages sit on white or an off-white, and five of those are warm (#F2F1EC, #F0EBE3, #F6F5F3, #ECEBE4, #D8D6D2) rather than cool. Only about 7 are near-black (#080808–#1A1A18).
+- The name is the hero. About 10 of 29 set a wordmark or a one-line name edge to edge across the frame, at 100–500px tall. It sits at the top or bleeds off the bottom, often overlapping a photo or object.
+- One rendered object, centred in empty space. About 7 pages put a single 3D or cut-out object mid-frame (chrome head, glass-and-metal box, felt app icon, a person at a desk, a ceramic bowl) with little or no text around it.
+- Text sits at the edges. Nav is three or four plain links or small uppercase words pinned to the corners or spread across the top, with no bar. Product pages add a pill CTA at top right.
+- A location line works as a credential: "WEB DESIGN STUDIO · CALGARY", "DISEÑO WEB DE AUTOR · GALICIA", "Zagreb, Croatia", "Wellington, New Zealand", "Tasmania". It appears on about 7 pages, usually in uppercase with an interpunct.
 
 Palette:
-- Dark ground at #0B0B0B–#111111, cards and panels one step up at #1A1A1A–#222222, body text dimmed to #9A9A9A–#A0A0A0 with emphasis in #F2F2F2.
-- Light ground at #FFFFFF or a cool #F0F2F2. Text is #111111–#1C1C1C, sublines #7A7A7A–#8A8A8A.
-- When a page has one accent, it is red-orange: #F09B4A, #F26B3A, #E8541C, a tomato red. About 5 pages.
-- Saturated full-bleed fields are rare: one cobalt (#0067A5), one orange (#F09B4A), one khaki (#A9A28C).
-- On dark product pages, status colour comes in small doses: green #1DB97A, blue #2244FF, and one rainbow gradient ring.
+- Light ground: pure #FFFFFF on product pages, and a warm off-white (#F0EBE3–#F6F5F3) or putty grey (#D8D6D2) on studio and portfolio pages. Ink is #111111–#1A1A1A.
+- Dark ground: #0A0A0A–#141414, with text #EDEDED and sublines #8A8A8A. One dark page is warm (#1A1A18) with cream type (#EEEAE0).
+- Accents are loud and single. Acid lime #D8F33A, signal red #FF2A00, safety orange #FF5A1F, electric violet #A600F0, ultramarine #2840FF, product blue #1A5CFF. Each page uses one of them, never two.
+- Saturated full-frame fields appear on 3 pages: khaki #B6BD93 under red type, ultramarine #2840FF, and a violet #A600F0 band.
+- Black-and-white photography carries colour-free pages: about 4 hero photos are monochrome (a vineyard, a portrait, a mountain range, a film strip graded nearly to grey).
 
 Type:
-- Neo-grotesk for the UI almost everywhere. Display weights sit at 500–600, never 800+. Tracking is tight on headlines and default on body.
-- Two-tone headline: line one in full ink, line two (or the lead-in words) in mid-grey #7A7A7A–#8A8A8A, sometimes blurred mid-reveal. About 6 pages.
-- Serif returns only as display. A transitional or old-style serif headline sits over grotesk body on 3 pages, and one page uses a lone serif numeral.
-- Mono appears only as metadata: uppercase, 11–12px, wide tracking, items joined by interpuncts ("TOOLS · 5 MIN READ · OCT 2026").
-- Personal sites often use a monoline script signature as the logo (3 pages).
+- Display weight has swung heavy. Wide grotesk at 800–900 in all caps (about 5 pages), plus condensed bold caps on 2 pages. Last month's 500–600 ceiling is broken.
+- Sentence-case grotesk at 500–600, tracked tight, two lines with a full stop, survives on the product pages (about 8). It is now the conservative choice.
+- Serif returns as a texture of its own: a spaced-caps serif wordmark, transitional serif caps for body, a centred serif paragraph over a photo, and an italic serif display word ("magia"). About 5 pages.
+- Mono appears as a whole wordmark on one page and as small metadata elsewhere. Small uppercase grotesk at 11–13px with wide tracking handles nav and labels on about 9 pages.
+- Gradient and effect type: one rainbow vertical gradient on a condensed wordmark, and one vertical grey-to-steel gradient fill on heavy caps.
 
 Layout:
-- Full-width 1280 frame with a 16–32px gutter. There is no visible grid; the page reads as a void with one centred mass.
-- Portfolios: tiny corner text plus one centred object, image cluster or list. A numbered project index set in small grotesk (01–12) stands in for a grid.
-- Text-first personal pages use a single centred column about 560–640px wide, with headings and short descriptions stacked down it. It reads like a résumé.
-- SaaS pages: centred stack, then a tabbed or window-framed product shot. Two pages add floating stat cards around the headline.
-- Fixed pill or chat button in the bottom-right corner. Cookie banners cover the lower right on about 6 frames.
+- The full-bleed 1280 frame is split into a wordmark band and a picture band (top/bottom), or a centred object with corner text. Columns are rare.
+- Full-bleed photo or video heroes with type laid over them: about 6 pages.
+- Product pages keep the centred stack: headline, grey subline, a pill CTA or email field, then a large image. One keeps a left-text/right-illustration split with a logo wall below.
+- Editorial and studio pages turn to dense collage on 3 pages: an edge-to-edge image grid with no type, a mixed-size tile grid with a caption column, and a numbered issue list set at 200px+.
+- Cookie banners cover the lower corner on 5 frames. A fixed floating button sits bottom-right or bottom-left on about 5.
 
 Material:
-- Buttons are pills or fully rounded rectangles: black #111 with white text on light pages, white #F2F2F2 with black text on dark pages. Radius is 999px, or 12–16px for blocks.
-- Cards use 16–24px radii with one soft diffuse shadow, or a 1px border at about 8% white on dark.
-- Product screenshots sit in macOS window chrome, sometimes over a blurred wallpaper photo.
-- Texture is rare but present: film grain on pale grey, a faint 40–60px line grid on dark, one checkerboard.
-- Lines are 1px hairlines and dotted dividers. Shadows never stack in layers.
+- Rendered 3D objects are the main image: chrome or liquid metal (2 pages), glass and brushed aluminium with an emissive glow, felt and plaster, and ceramic with an etched illustration. They are lit softly with a single contact shadow or reflection.
+- Cut-outs of people with no background: a person at a desk seen from above, a head-and-shoulders portrait, a chrome head.
+- Image treatments that alter the photo: a thermal-camera false-colour portrait, gradient-mapped violet/green landscape, monochrome grading.
+- Pills remain the button shape (radius 999px). A newer variant puts an arrow inside a circle docked at the pill's right end (about 3 pages).
+- Texture is light: film grain on black, a 44px line grid on dark, a dot-halftone pattern on pale mint, a dashed hairline frame around an inset image.
 
 Motion (as far as a still shows it):
-- Loaders are everywhere: thin progress bars along the top or bottom edge, a "0" counter, text frozen mid-fade, a dimmed wordmark before the reveal.
-- Type-on and blur-in headlines are caught mid-animation (half-typed last letter, blurred second line).
-- Carousels show neighbouring slides blurred at the edges. Floating objects (bubbles, app icons) are caught mid-drift.
-- Video heroes with visible pause/play and sound toggles imply autoplay with sound off.
-- Live elements: a running local-time readout, a version tag ("3.5.1"), "Open 24 Hours".
+- Loaders and intro frames are still common, about 6 of 29: a lone wordmark on white, a "000" counter, an "85%" counter on a blue field, a frosted-blur page mid-load, a dimmed video with a logo spinner.
+- Video heroes with visible pause or mute controls, and one "Paused | Vibing with …" music-player chip.
+- Marquee film strips and stacked card decks caught mid-shuffle.
+- Explicit interaction prompts: "move the cursor over the face", "Desliza. El conxuro empieza contigo." Pages ask to be played with.
+- Live readouts: a running clock with a city ("14:46:12, ZAGREB"), a performance readout in the header ("LCP 668ms · WIRE 19kB"), an "Open for new projects" status dot.
 
 Copy:
-- Personal pages open on a first-person greeting: "Hi, I'm …", "I'm …", "A letter from …", an @handle as the H1.
-- Product headlines follow "[Category] for your [noun]" or "[Known thing] for the [new] era", usually two lines, often with a grey second line that states the benefit.
-- AI is assumed, not announced as new: an agent, an AI canvas, an AI rank, "AI-Assisted Builder". On 3 pages a prompt input box replaces the CTA button.
-- One-time pricing is pitched as a feature: "Pay once", "Buy once, own it forever", "Buy now — $19".
-- Location and status lines appear as microcopy: "Based in Kyiv", "London, UK", "Local time 07.09", "©2026".
+- Anti-generic, anti-AI positioning is the new pitch: "Build with your taste, not the default AI look.", "AS ALT 2 SOULLESS DESIGN", "Hecha a mano en Galicia… Una persona."
+- At the same time AI shows up as a utility on personal sites: an "Ask [name] AI" button, "websites, 3D, bots, AI agents and automation".
+- Personal pages open on a greeting or a first-person line: "Hi, I'm …", "I'm a product designer who loves making …".
+- Studios state the offer plainly with the client in mind: "Digital products that bring in clients.", "Built start to finish for small businesses worldwide. You work with us directly."
+- Statement paragraphs in place of headlines on 3 pages: one centred serif sentence, an uppercase bio paragraph run across the full width, a footnoted quotation.
 
 Counter-moves:
-- kiselevvv.xyz: a blackletter wordmark cut across a product cutout, on pure white, with only 11px grotesk corner text around it. It works against both the grotesk default and the dark default.
-- stash.cool: a custom wedge-serif wordmark set edge to edge at about 600px tall. The display face itself is the hero, not one object in a void.
-- cookedapps.com: a checkerboard surround, a 1px orange (#F26B3A) frame, a rubber-stamp roundel and a boxed uppercase tag grid. It commits to a printed-ephemera register instead of a neutral one.
-- wam.studio: full-bleed cobalt #0067A5 with a vertical stripe mark masking ocean footage. The whole frame is one saturated colour.
-- brandonyasin.com: a warm khaki field (#A9A28C) with an off-grid overlapping photo collage. It avoids both black and white.
-- meetmappy.com: a saturated orange (#F09B4A) field with a floating white nav card on the left instead of a top bar.
-- ardor.cloud: a dot-matrix display headline on an otherwise standard SaaS stack.
-- visualjournal.it: a dense two-column image grid filling the first frame, the opposite of the empty stage.
+- kelvin.8b.com: a cream ground with boxed, ruled text panels like a printed programme, a thermal false-colour portrait and a condensed wordmark in a full rainbow vertical gradient. It is maximal where the month is restrained.
+- benvenusa.com: a heavy black wordmark over an electric violet (#A600F0) band set in serif caps, then a monochrome landscape that gradient-maps into violet and green. It treats a wine importer like a poster.
+- mandl.design: one khaki (#B6BD93) field with a signal-red (#FF2A00) geometric wordmark and a stacked mono "De/si/gn". There is nothing else on the frame.
+- developments.media: an editorial issue list where each entry is a huge light grotesk headline under a numeral and an italic kicker, with a dashed-frame sketch inset. The index itself is the page.
+- grafik.nz: a dense tile grid with condensed orange (#FF5A1F) caps laid across a monochrome portrait and a plain caption column. It is the opposite of the centred object in a void.
+- davidfiz.com: a first frame that is only an edge-to-edge grid of identity applications, no headline at all.
+- hipuku.dev: navigation drawn as a node diagram of pill labels and elbowed connector lines over a faint grid.
+- omeigo.net: a warm near-black with cream type, an italic serif display word and an etched-illustration salamander in a rendered bowl. It commits to a handmade, folkloric register.
 
 New since last digest:
-- first digest
+- Light grounds outnumber dark again (about 17 to 7), and warm off-whites have appeared where last month's light pages were cool.
+- Oversized edge-to-edge wordmarks moved from one counter-move to about a third of the pages.
+- Display weight jumped from 500–600 to 800–900 wide caps and condensed bold caps.
+- Rendered 3D hero objects in chrome, glass and ceramic.
+- Photo treatments: thermal false colour, gradient maps, monochrome grading.
+- Copy that positions against AI sameness and for handmade, single-author work.
+- Serif used as body and statement text, not only as display.
 
 Fading:
-- first digest
+- Two-tone headlines with a grey or blurred second line: none this month.
+- App screenshots in macOS window chrome: none.
+- Prompt-style input boxes as the hero CTA: replaced by plain email capture fields (2 pages) and one search field.
+- "Pay once" pricing copy and monoline script-signature logos: none.
+- Near-black as the default ground: down from about half the pages to about a quarter.
 
 Register tells:
 On-trend:
-- Near-black #0B0B0B ground with 13–15px off-white text links pinned to three or four points across the top, no nav bar.
-- Two-line sentence-case grotesk headline whose second line is mid-grey (#808080) or blurred.
-- First frame that is a loader, a counter or a single intro line on an empty field.
-- Uppercase mono metadata separated by interpuncts under media tiles.
-- A prompt-style input with a round arrow button where the hero CTA would be.
-- Numbered project list (01, 02, 03…) in small grotesk as the portfolio index.
-- Local-time, location or "©2026" microcopy as the header's second line.
-- "Pay once" or a single price on the CTA ("Buy now — $19").
+- A name or wordmark set edge to edge across the 1280 frame in heavy wide caps, bleeding off the top or bottom.
+- A single rendered chrome, glass or ceramic object centred on an empty light or black field.
+- A warm off-white ground (#F0EBE3–#F6F5F3) with small uppercase corner nav.
+- One loud accent (acid lime, signal red, ultramarine or violet) used as a full field or a single wordmark, nothing else in colour.
+- A photo given a thermal, gradient-map or hard monochrome treatment.
+- An uppercase location line with an interpunct ("STUDIO · CITY") above the headline.
+- A pill button with a circled arrow docked at its right end.
+- Copy that names the generic AI look as the thing to avoid.
 Dated:
-- Purple radial glow (#2E1F4F) on black, over a faint line grid.
-- Rainbow or gradient-ring border around the main input.
-- Full-width gradient announcement bar with an emoji and a discount code.
-- Floating app-icon bubbles orbiting a "Hi, I'm …" headline with a waving-hand emoji.
-- Tilted 3D-perspective dashboard mockup below the hero, flanked by floating stat cards.
-- "#2 on Product Hunt" laurel badges and "Now on iPhone" pill badges with a glowing dot.
-- Vertical grey gradient fill on headline text.
-- Glossy 3D bubble or orb objects as portfolio thumbnails.
+- A grey second line or blurred second line on a two-line sentence-case headline.
+- An app screenshot in macOS window chrome rising from the fold.
+- A prompt input with a round arrow button as the hero CTA.
+- Flat line-art spot illustration with pastel gradient washes beside a left-aligned headline, over a 20-logo customer wall.
+- Thin geometric rounded sans headline with a hand-drawn-style underline beneath each line.
+- A vertical metallic gradient fill on heavy headline caps.
+- A magenta-to-orange gradient border around a pill CTA on black.
+- A glowing purple or lime radial halo behind a floating 3D product on pure black.
