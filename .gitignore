@@ -12,3 +12,6 @@ dist/
 # Trends scan screenshots are third-party sites in a public repo: never
 # committed. The manifest and the digest are text and are committed.
 skills/design-director/trends/*/shots/
+
+# Packaged Cowork plugin, built by zip from the tree; never committed
+*.plugin

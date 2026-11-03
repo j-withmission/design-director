@@ -32,19 +32,31 @@ anything else.
 Spot check needs no permission; it is the price of touching a screen. Review
 and Redesign go through the gate.
 
-## Runtime: Claude Code or bb
+## Runtime: Claude Code, Cowork or bb
 
 This skill runs in Claude Code, where it asks with AskUserQuestion and runs
-critics as subagents, and in the bb agent orchestrator, where it runs on
-whatever provider the thread is on — Claude Code, Codex, Pi, or an ACP agent.
+critics as subagents; in Claude Cowork, which runs the Claude Code path as
+written; and in the bb agent orchestrator, where it runs on whatever
+provider the thread is on — Claude Code, Codex, Pi, or an ACP agent.
 
 **Detect it first:** `BB_THREAD_ID` is set in every bb thread. Set means bb;
-unset means Claude Code, and everything below applies as written.
+unset means Claude Code or Cowork, and everything below applies as written.
 
 In bb, read `references/runtime-bb.md` **before spawning anything and before
 asking the gate question**. It is the only reference allowed before the gate,
 because the gate itself needs it: it maps every question, spawn and model
 alias onto bb's CLI, and it says which provider the critics run on.
+
+**Cowork** is Claude Code with three differences. The shell is the workspace
+shell tool, not Bash, and it runs in a Linux sandbox, not on the Mac: run the
+scripts through it, and expect `google-chrome` on `PATH` rather than Chrome
+in `/Applications` (checked 2026-11-03; `scripts/shot.sh` found it). If
+`shot.sh` exits 2 anyway, say so in one line and stop before the critic
+rather than critiquing in conversation, because a critic that shares the
+builder's context is the thing this skill exists to avoid. And log `cowork`
+beside the configuration of every score in the record, as bb logs its
+provider: Cowork subagents are Claude models, so the scale is the Claude one,
+but the runtime is still named.
 
 ## Gate: confirm before spending anything beyond a spot check
 

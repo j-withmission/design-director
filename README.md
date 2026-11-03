@@ -109,6 +109,28 @@ git clone https://github.com/j-withmission/design-director.git
 ln -s "$PWD/design-director/skills/design-director" ~/.claude/skills/design-director
 ```
 
+## Works in Cowork
+
+The repo is also a Claude Cowork plugin: `.claude-plugin/plugin.json` is the
+manifest and `skills/design-director/` is the one skill. Build the plugin
+file from a clone and install it from the chat:
+
+```
+zip -r design-director.plugin . -x "*.DS_Store" -x ".git/*" -x "node_modules/*"
+```
+
+A Cowork session runs the Claude Code path unchanged: it has
+AskUserQuestion, subagents, and a workspace shell. That shell is a Linux
+sandbox with `google-chrome` on `PATH`, and `shot.sh` finds it there
+(checked 2026-11-03: a Cowork session wrote the test PNG from the installed
+plugin's own folder). If a session has no Chrome the skill stops before the
+critic and says so; it never critiques in conversation, because that puts
+the builder and the critic in one context. Also checked that day against a
+thousand Cowork session starts: every one exposed subagents and image
+reads, and an isolated Opus critic read only the PNG and returned a score in
+about twenty seconds. Not yet checked: that Cowork's subagent model aliases
+match Claude Code's.
+
 ## Works in bb
 
 The skill also runs inside [bb](https://github.com/get-bb/bb), on any provider
@@ -148,8 +170,8 @@ design record logs the provider and model next to every score.
 
 ## Requirements
 
-- Claude Code, or bb. In Claude Code the skill spawns subagents and uses the
-  model aliases `fable`, `opus`, and `sonnet`.
+- Claude Code, Claude Cowork, or bb. In Claude Code and Cowork the skill
+  spawns subagents and uses the model aliases `fable`, `opus`, and `sonnet`.
 - Optional: [bb](https://github.com/get-bb/bb) (desktop app v0.42 or newer)
   to run the same skill on any provider. Nothing extra to install; the skill
   uses the `bb` CLI that bb injects into every thread as `BB_CLI`.
@@ -207,6 +229,7 @@ six days later.
 ## Files
 
 ```
+.claude-plugin/plugin.json      the Cowork plugin manifest
 skills/design-director/
   SKILL.md                      the process: tiers, gate, stage router, model roles
   references/
