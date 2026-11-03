@@ -82,9 +82,9 @@ in the row.
 |---|---|---|---|---|---|---|
 | | | | | | | |
 
-Configuration is the critic model, and in bb the provider too:
-`opus` in Claude Code, `claude-code/claude-opus-5[1m]/high` or
-`codex/gpt-5.6-sol/high` in bb. When a trends digest is pinned, its hash
+Configuration is the critic model, and outside Claude Code the runtime too:
+`opus` in Claude Code, `cowork/opus` in Cowork, `claude-code/claude-opus-5[1m]/high`
+or `codex/gpt-5.6-sol/high` in bb. When a trends digest is pinned, its hash
 follows: `opus · digest 3fa9c2e81b07`. Scores from two configurations are two
 scales; never compare them or carry a baseline across them.
 
