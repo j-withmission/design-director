@@ -111,6 +111,64 @@ brief then treats those elements as fixed and writes rules that allow
 them. Record the list in the design record next to the brief line, and
 regenerate the brief when it changes.
 
+## Machine-checkable rules
+
+Every rule in the brief carries one `machine:` line directly under it,
+indented to the rule text. The line restates the rule, where it can, in a
+form `scripts/detect.mjs` checks against the rendered page without a model.
+The grammar is deliberately small:
+
+- `machine: accent-colors <= N`: at most N distinct saturated colors on the
+  page.
+- `machine: palette-only`: every rendered color snaps to a color named in
+  the Translation's palette line.
+- `machine: families == {serif:display, sans:body}`: one or more
+  generic:band pairs. The generic is `serif`, `sans` or `mono`; the band is
+  `display` (text at 1.5 times body size or larger) or `body`.
+- `machine: no gradients`
+- `machine: no shadows`
+- `machine: radius <= Npx`
+- `machine: border-weight <= Npx`
+- `machine: min-text >= Npx`
+- `machine: contrast >= AA`
+- `machine: none`: the rule is critic-only; a model has to look.
+
+A Rules block then reads like this:
+
+```
+Rules:
+1. The page uses the paper ground, ink text and one clay accent, and no
+   other color.
+   machine: palette-only
+2. Display headings are set in the serif and running text in the sans.
+   machine: families == {serif:display, sans:body}
+3. Surfaces are flat: no drop shadows anywhere, depth comes from tone.
+   machine: no shadows
+4. The headline sits in the left two thirds and is the first thing the eye
+   lands on, before the image.
+   machine: none
+```
+
+Given the brief with `--brief`, the detector parses these lines, evaluates
+each one against the page's computed styles, and reports it as passed or
+failed beside its other measurements. A `none` rule is listed as
+critic-only and left to the spot check and the critic. What the detector
+reports goes to the builder and the design record, never to a critic
+(`spot-check.md`, step 0.5).
+
+A rule that no form expresses gets `machine: none`, and `none` is the right
+answer for anything about composition, focus or material: where the eye
+lands, what governs the frame, how a surface feels to the hand. A count
+standing in for such a rule checks something the rule did not say. Every
+rule has its line, `none` included, so the detector's tally of compiled and
+critic-only rules always adds up to the number of rules.
+
+`palette-only` snaps every rendered color to the hex values in the
+Translation's Palette line and nothing else in the brief, and the
+detector's off-palette list is measured against the same values. That line
+must carry real hex values. A Palette line that says "warm paper and a clay
+accent" gives the detector nothing to snap to.
+
 ## Procedure
 
 1. Collect the inspiration set from the source the user chose: one to four
@@ -235,12 +293,32 @@ one line per axis: palette becomes background, text and accent colors and
 their proportions; composition becomes grid, hero placement and reading
 order; focus becomes hierarchy; density becomes spacing rhythm and how many
 elements share a viewport; light and material become depth cues, contrast
-and finish. The surface should feel like it belongs to the resolved world,
-not reproduce any picture.
+and finish. Give the palette line its colors as hex values. The surface
+should feel like it belongs to the resolved world, not reproduce any
+picture.
 
 Step 4. Rules. Three to five rules a critic can check a screenshot against
 without seeing the images: one sentence each, testable, jointly satisfiable,
-and specific to this resolved direction.
+and specific to this resolved direction. Under each rule, indented to its
+text, write one line that restates it for a script that measures the
+rendered page, in exactly one of these forms:
+  machine: accent-colors <= N
+  machine: palette-only
+  machine: families == {serif:display, sans:body}
+  machine: no gradients
+  machine: no shadows
+  machine: radius <= Npx
+  machine: border-weight <= Npx
+  machine: min-text >= Npx
+  machine: contrast >= AA
+  machine: none
+N is a number you choose. palette-only means every rendered color is one of
+the hex values in the Translation's palette line. In families, give one or
+more generic:band pairs, where generic is serif, sans or mono and band is
+display (text at 1.5 times body size or larger) or body. When no form says
+what the rule says, write machine: none; anything about composition, focus
+or material is none. Do not bend a rule to fit a form. One machine line per
+rule, always.
 
 No preamble, no commentary. Respond in exactly this structure:
 
@@ -268,6 +346,7 @@ Translation:
 - Light and material → ...
 Rules:
 1. ...
+   machine: ...
 ```
 
 ## Reading the brief
@@ -277,6 +356,7 @@ Rules:
 - **Rules** are the checklist the spot check and the critic report on. They
   are a progress tally, never a score. A page can fail every rule and be
   well made; the score says so and the tally says what is still to do.
+- The `machine:` lines are for the detector; the critic reads the sentence.
 - Under Redesign, the translation sets the world, not the layout. Before
   Discover, mark each of its five axes fixed or open (`discover.md`, "What
   the seed is allowed to move"). A palette from code is fixed; composition,

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Decorated</title>
+<!-- Known answer: no findings on its own. Measurements only: a purple
+     gradient hero, shadowed cards, 24px radii, 3px borders, four saturated
+     accents, sans type throughout, 13px labels. Against brief-strict.md every
+     compiled rule fails except contrast. -->
+<style>
+  body { margin: 0; background: #ffffff; color: #222222; font: 16px/1.6 Arial, Helvetica, sans-serif; }
+  .hero { background: linear-gradient(135deg, #7c3aed, #4c1d95); color: #ffffff; padding: 72px 48px; border-radius: 0 0 24px 24px; }
+  .hero h1 { font-size: 48px; line-height: 1.1; margin: 0 0 16px; }
+  .hero p { margin: 0; max-width: 52ch; }
+  .cards { display: flex; gap: 24px; padding: 56px 48px 32px; }
+  .card { flex: 1; padding: 24px; border-radius: 24px; border: 3px solid; box-shadow: 0 12px 32px rgba(17, 24, 39, 0.18); background: #ffffff; }
+  .card h2 { font-size: 22px; margin: 0 0 8px; }
+  .card p { margin: 0; }
+  .label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: #374151; margin: 0 0 12px; }
+  .a1 { border-color: #7c3aed; } .a2 { border-color: #db2777; }
+  .a3 { border-color: #0d9488; } .a4 { border-color: #f59e0b; }
+  .foot { padding: 8px 48px 72px; }
+  .foot p { margin: 0; max-width: 60ch; }
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>Ship faster with less</h1>
+  <p>One workspace for planning, building and launching. Bring the whole team along.</p>
+</header>
+<section class="cards">
+  <div class="card a1"><p class="label">Plan</p><h2>Roadmaps</h2><p>Line up the quarter in one view.</p></div>
+  <div class="card a2"><p class="label">Build</p><h2>Boards</h2><p>Move work from idea to done.</p></div>
+  <div class="card a3"><p class="label">Launch</p><h2>Releases</h2><p>Bundle changes and tell people.</p></div>
+  <div class="card a4"><p class="label">Learn</p><h2>Insights</h2><p>See what landed and what did not.</p></div>
+</section>
+<section class="foot"><p>Free for small teams. No card needed to start.</p></section>
+</body>
+</html>

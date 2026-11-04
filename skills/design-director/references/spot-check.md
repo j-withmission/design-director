@@ -6,6 +6,9 @@ before the task reports done, and its job is to nudge, not to grade. One
 
 ## What it does
 
+A detector that calls no model runs first (step 0.5 below), and when the
+page is unchanged and it finds nothing, the Sonnet call is not needed.
+
 Given the fresh screenshot, the aesthetic sentence, and the reference brief
 if one exists:
 
@@ -33,8 +36,33 @@ if one exists:
    question once, write the brief if the user wants one, and log the answer.
    On an autonomous run, skip the question and note the missing brief in
    the final message.
-1. Screenshot with `scripts/shot.sh` at the viewport size the surface was
-   last shot at. Look at it yourself first; a clipped label or an unloaded
+
+0.5. **Detector.** Run `scripts/detect.mjs <url-or-file> --brief <brief>
+   --previous <last spot-log shot> --shot <new.png>`, with `--width` set to
+   the viewport the surface was last shot at (1280 by default), so the shot
+   and the measurements come from one Chrome launch. Leave out `--brief`
+   when the surface has no brief and `--previous` when the spot log has no
+   shot yet.
+   - If the hash distance is 3 or less and there are no findings, skip the
+     Sonnet call. Log the spot-log row with pair verdict "skipped:
+     unchanged" and the detector column filled, and stop.
+   - If there are findings, hand them to the builder and fix the one-line
+     ones now; the rest go in the design record. Run this step once more so
+     the shot is of the fixed page, then continue to the Sonnet call.
+   - Otherwise continue with the shot it wrote.
+
+   Detector findings are never put in front of the Sonnet spot check or
+   the Opus critic: not in the prompt, not in the preamble, not in the
+   attached files. A critic told what to look for anchors on it. The
+   findings go to the builder and the design record only.
+
+   The detector runs the same way as a Stop hook and in CI, where it exits 2
+   on findings (0 when clean, 1 on an error). It reports measurements and
+   findings and never scores.
+1. Screenshot. Normally this is the `--shot` PNG from step 0.5. When the
+   detector could not run, shoot with `scripts/shot.sh` at the viewport
+   size the surface was last shot at, and log the detector column as "not
+   run". Look at the shot yourself first; a clipped label or an unloaded
    font is a bug, fix it before spending anything.
 2. Find the previous shot for this surface in the design record's spot log
    (or the last review round). If there is none, skip the pairwise step.
@@ -46,10 +74,13 @@ if one exists:
    attaches the shots instead of naming paths; see
    `references/runtime-bb.md`.
 4. Log one row in the record's spot log: date, surface, pair verdict, rules
-   passed, top nudge, screenshot path.
+   passed, detector (findings · compiled rules passed/total), top nudge,
+   screenshot path.
 5. **Escalate** to a Review when any of these is true:
    - the pairwise verdict is "worse" with a `clear` margin;
-   - a rule that passed in the last logged row now fails;
+   - a rule that passed in the last logged row now fails (a "skipped:
+     unchanged" row has no rules check; compare against the last row that
+     ran the Sonnet call);
    - the same nudge has been logged three times without being applied;
    - the screen has no fill, weight or finish left and the aesthetic
      sentence or brief names one.

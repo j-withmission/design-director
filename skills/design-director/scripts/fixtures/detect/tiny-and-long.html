@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tiny and long</title>
+<!-- Known answer: tiny-text (10px captions) and long-lines (a paragraph set
+     about 140ch wide). Nothing else. -->
+<style>
+  body { margin: 0; background: #ffffff; color: #1a1a1a; font: 16px/1.5 Arial, Helvetica, sans-serif; }
+  .wide { width: 1240px; margin: 0 auto; padding: 40px 0 80px; }
+  h1 { font-size: 36px; margin: 0 0 24px; }
+  .long { margin: 0 0 40px; }
+  figure { margin: 0 0 16px; }
+  .box { width: 320px; height: 120px; background: #e4e4e4; }
+  figcaption { font-size: 10px; color: #333333; margin-top: 6px; }
+  .short { margin: 0; max-width: 60ch; }
+</style>
+</head>
+<body>
+<div class="wide">
+  <h1>Quarterly operations report</h1>
+  <p class="long">This paragraph sits in a container more than twelve hundred pixels wide with no measure set on it, so each rendered line runs to roughly one hundred and forty characters before it wraps, which is far past the comfortable range for reading. The eye has to travel a long way back to find the start of the next line, and on a wide monitor it often lands on the wrong one. Nothing else about the paragraph is wrong: the size is fine, the contrast is fine, and the leading is fine. Only the measure fails, and that is exactly what the long-lines finding is meant to catch without anyone having to squint at a screenshot.</p>
+  <figure><div class="box"></div><figcaption>Figure 1. Throughput by week, all regions combined.</figcaption></figure>
+  <figure><div class="box"></div><figcaption>Figure 2. Backlog age in days, median and 90th percentile.</figcaption></figure>
+  <p class="short">Both figures are drawn from the same export.</p>
+</div>
+</body>
+</html>

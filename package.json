@@ -23,6 +23,12 @@
       "skills"
     ]
   },
+  "scripts": {
+    "test:detect": "node skills/design-director/scripts/detect.test.mjs"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.33.5"
+  },
   "devDependencies": {
     "@get-bb/plugin-sdk": "0.4.47",
     "@types/node": "^22.0.0",

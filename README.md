@@ -69,6 +69,33 @@ what the score meant.
 | **Review** | A surface's baseline slipped: spot check escalated, or the user says "make this better" / "this looks off" | The critic loop on the existing direction, three critic repeats per round, median score | `opus` critic, session model implements | ~$0.35 and 2 min per round |
 | **Redesign** | New surface, or the user wants the highest score the direction can reach | Reference brief, then Discover diverge (three seeded directions, each scored), then the critic loop to plateau | `fable` brief, `opus` critic, session model implements | ~$3 to $5 for three directions plus four rounds |
 
+### Detector
+
+`scripts/detect.mjs` measures the rendered page without calling a model,
+from the same single Chrome launch that takes the screenshot. From the
+page's computed styles it counts colors against the brief's palette, font
+families and sizes, line length, the gaps between siblings, the ratio of the
+largest text to body text, text and background pairs under WCAG AA, and
+gradients, shadows, radii and border weights. On the screenshot it measures
+the perceptual-hash distance to the previous shot, the share of whitespace,
+edge density, and the number of distinct colors. From the brief it compiles
+each rule's `machine:` line into a check and lists the rules that only a
+model can judge as critic-only. Findings are kept narrow (tiny text, long
+lines, a contrast failure, monotonous spacing, flat hierarchy, off-palette
+color, a failed rule) and everything else is reported as a measurement.
+
+It never scores, and its output never reaches the Sonnet spot check or the
+Opus critic, because a critic told what a detector found anchors on it. It
+goes to the builder and the design record. It runs as a gate in front of the
+spot check, where an unchanged page with nothing to flag skips the Sonnet
+call, as a Stop hook, and in CI, where findings exit 2.
+
+[Impeccable](https://impeccable.style)'s detector lints source code for
+AI-slop tells with 62 deterministic rules. This one measures the rendered
+page against the brief, so the two compose rather than overlap. How often
+the detector agrees with the critic has not been measured yet; it will be
+measured against the bench.
+
 ## Trends scan
 
 Once a month a script pulls about thirty new sites from public design
@@ -177,7 +204,10 @@ design record logs the provider and model next to every score.
   uses the `bb` CLI that bb injects into every thread as `BB_CLI`.
 - Chrome or Chromium, either on `PATH` or installed in `/Applications`, for the
   screenshot scripts.
-- Node 18 or newer for `shoot-auth.mjs`, which talks to Chrome over CDP.
+- Node 18 or newer for `shoot-auth.mjs` and `detect.mjs`, which talk to
+  Chrome over CDP.
+- Optional: `sharp`. The detector reads PNGs with it when it is installed and
+  falls back to a built-in decoder otherwise.
 - `npx lighthouse` for the accessibility gate. Nothing to install ahead of time;
   npx fetches it.
 - Optional: image or video generation keys in a gitignored `.env.agents` at the
@@ -201,7 +231,8 @@ without. A "no brief" answer is recorded so the surface is not asked again.
 **The spot check runs unasked.** It is the one thing that does not go through the
 gate, because it is the price of touching a screen: one Sonnet call at the end of
 any task that changed a surface, pairwise against the last screenshot, a rules
-tally, and at most two nudges. It escalates to a Review when the pairwise verdict
+tally, and at most two nudges. The detector runs first and skips that call
+when the page has not changed and has nothing to flag. It escalates to a Review when the pairwise verdict
 is clearly worse, when a rule that used to pass now fails, or when the same nudge
 has been logged three times without being applied.
 
@@ -248,6 +279,10 @@ skills/design-director/
     seed.sh                     random seed string from /dev/urandom
     shot.sh                     headless Chrome screenshot to a PNG
     shoot-auth.mjs              screenshots behind a login, one Chrome per run
+    detect.mjs                  the detector: page and screenshot measurements, brief rules
+    lib/chrome.mjs              the one-Chrome CDP launch the detector shoots with
+    fixtures/detect/            fixture pages for the detector tests
+    detect.test.mjs             the detector's tests, run against the fixtures
     lighthouse.sh               Lighthouse audit with an accessibility gate
     trends.sh                   collect and screenshot a month's new sites
   trends/
