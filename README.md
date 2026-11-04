@@ -61,6 +61,60 @@ unattainable by real pages, passing 4 times in 165 checks. Adding a single
 product surface to the same inspiration set made them attainable without changing
 what the score meant.
 
+## How this differs from Impeccable
+
+[Impeccable](https://impeccable.style/) (Paul Bakaus, Apache 2.0, about 100k
+stars) is the design skill most people will compare this one to, so here is
+the honest comparison, read from its source on 2026-11-04.
+
+Impeccable is a design vocabulary. Twenty-four commands you point at a target:
+`bolder`, `quieter`, `distill`, `typeset`, `colorize`, `animate`, `critique`,
+`audit`, `polish`, and so on. Two things in it have no equivalent here and are
+worth having alongside this skill: a deterministic detector of 62 anti-slop
+rules that runs as an edit hook, a CLI for CI, or a Chrome extension, with no
+model and no API key; and a Live Mode that overlays a running dev server, lets
+you pick an element, swaps variants in place, and writes the accepted one back
+to source. It also runs on about twenty agents, keeps product intent in a
+committed `PRODUCT.md`, and its critique does spawn isolated subagents, so it
+is not grading its own work in-context either.
+
+This skill is a design process, and the differences are in how the judgement
+is produced:
+
+- **The critic sees a screenshot and nothing else.** Impeccable's design
+  review reads the source files and inspects the page. Here the scoring critic
+  is handed one PNG and the brief: no code, no conversation, no detector
+  output. A critic that can read the code grades the intent; one that can only
+  see the page grades what shipped.
+- **The score is measured for repeatability.** Impeccable's critique scores
+  Nielsen's ten heuristics 0 to 4 once per run, on whatever model the session
+  is on. Here every number comes from three Opus critics, median taken, because
+  the bench showed Sonnet ranging 1 to 7 on identical input and Opus holding
+  within a point on 8 of 11 samples. The spot check is Sonnet precisely because
+  it never emits a number. The runs-over-time trend Impeccable keeps per target
+  is only meaningful if each run is reproducible; that is the property this
+  skill was built around.
+- **Quality and compliance are reported apart.** Rule failures collapsed every
+  real site to a 1 or 2 when folded into the score, so the critic reports the
+  score and the rules tally separately and is told not to merge them.
+- **Inspiration images are read once.** A strong model writes the reference
+  brief from the moodboard and the critics read that text; the images are
+  never shown again. Impeccable has no stated inspiration-image path.
+- **Three tiers with published costs and a stop rule.** Spot check, Review,
+  Redesign, at roughly $0.03, $0.35 a round, and $3 to $5, each gated and each
+  ending at a plateau rather than when the user stops asking.
+- **A per-surface design record** with baseline, critic history, provider and
+  model beside every score, and the rejected directions, so a surface can be
+  re-scored on a newer model or a rejected direction retried.
+- **A monthly trends digest** that the brief and Discover read and the critic
+  never scores against, with a register choice: follow the month, counter it,
+  or ignore it.
+
+Where they meet: Impeccable's detector is a good free pre-filter for the
+tells its rules cover, and nothing here duplicates it. Run it on every edit;
+run this when lint has passed and the question is whether the page is any
+good.
+
 ## The three tiers
 
 | Tier | When | What runs | Model | Measured cost |
