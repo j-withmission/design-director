@@ -130,9 +130,30 @@ if (!findChrome()) {
       10: 'critic-only',
     })
     assert.deepEqual(doc.summary.rules, { passed: 1, compiled: 9, criticOnly: 1, unparsed: 0 })
-    assert.deepEqual(ids(doc), ['off-palette', 'rule-failed'])
-    assert.deepEqual(doc.findings.filter((f) => f.id === 'rule-failed').map((f) => f.rule), [1, 2, 3, 4, 5, 6, 7, 8])
+    // Failed compiled rules are warnings, not findings; off-palette is the one finding.
+    assert.deepEqual(ids(doc), ['off-palette'])
+    assert.deepEqual(doc.warnings.map((w) => w.rule), [1, 2, 3, 4, 5, 6, 7, 8])
+    assert.equal(doc.summary.warnings, 8)
     assert.equal(code, 2)
+  })
+
+  test('clean.html against brief-warn.md: failed compiled rules exit 0 without --strict, 2 with it', async () => {
+    const warn = fx('brief-warn.md')
+    const a = await json([fx('clean.html'), '--brief', warn])
+    assert.deepEqual(statuses(a.doc), { 1: 'fail', 2: 'fail', 3: 'critic-only' })
+    assert.deepEqual(ids(a.doc), [])
+    assert.deepEqual(a.doc.warnings.map((w) => w.rule), [1, 2])
+    assert.equal(a.doc.strict, false)
+    assert.equal(a.code, 0)
+    const b = await json([fx('clean.html'), '--brief', warn, '--strict'])
+    assert.deepEqual(ids(b.doc), ['rule-failed'])
+    assert.deepEqual(b.doc.findings.map((f) => f.rule), [1, 2])
+    assert.deepEqual(b.doc.warnings, [])
+    assert.equal(b.doc.strict, true)
+    assert.equal(b.code, 2)
+    const t = await run([fx('clean.html'), '--brief', warn])
+    assert.equal(t.code, 0)
+    assert.ok(t.stdout.split('\n').some((l) => /^warning {2}rule-failed {2}rule 1 failed/.test(l)))
   })
 
   test('clean.html against brief-strict.md: compiled rules pass; same page hashes the same', async () => {
@@ -157,14 +178,15 @@ if (!findChrome()) {
     const r = await run([fx('decorated.html'), '--brief', BRIEF])
     assert.equal(r.code, 2)
     const lines = r.stdout.trim().split('\n')
-    assert.match(lines.at(-1), /^summary {2}9 findings · rules 1\/9 · critic-only 1 · hash distance n\/a$/)
+    assert.match(lines.at(-1), /^summary {2}1 findings · 8 warnings · rules 1\/9 · critic-only 1 · hash distance n\/a$/)
     assert.ok(lines.some((l) => /^finding {2}off-palette {2}/.test(l)))
+    assert.ok(lines.some((l) => /^warning {2}rule-failed {2}/.test(l)))
     assert.ok(lines.some((l) => /^rule 10 {2}critic-only {2}/.test(l)))
     assert.ok(!r.stdout.includes('{'), 'text mode prints no JSON')
   })
 
   test('no score, grade or rating anywhere in the JSON', () => {
-    assert.ok(docs.length >= 8)
+    assert.ok(docs.length >= 10)
     for (const doc of docs) {
       const k = keys(doc)
       for (const banned of ['score', 'grade', 'rating']) assert.ok(![...k].some((x) => x.toLowerCase() === banned), `key ${banned} in ${doc.source}`)

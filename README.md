@@ -82,13 +82,16 @@ edge density, and the number of distinct colors. From the brief it compiles
 each rule's `machine:` line into a check and lists the rules that only a
 model can judge as critic-only. Findings are kept narrow (tiny text, long
 lines, a contrast failure, monotonous spacing, flat hierarchy, off-palette
-color, a failed rule) and everything else is reported as a measurement.
+color) and everything else is reported as a measurement. A failed compiled
+rule is a warning, not a finding, until the rules' agreement with the
+critic has been measured on the bench (decided 2026-11-04); `--strict`
+makes it a finding.
 
 It never scores, and its output never reaches the Sonnet spot check or the
 Opus critic, because a critic told what a detector found anchors on it. It
 goes to the builder and the design record. It runs as a gate in front of the
 spot check, where an unchanged page with nothing to flag skips the Sonnet
-call, as a Stop hook, and in CI, where findings exit 2.
+call, as a Stop hook, and in CI, where findings exit 2 and warnings do not.
 
 [Impeccable](https://impeccable.style)'s detector lints source code for
 AI-slop tells with 62 deterministic rules. This one measures the rendered

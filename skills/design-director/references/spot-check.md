@@ -51,14 +51,21 @@ if one exists:
      the shot is of the fixed page, then continue to the Sonnet call.
    - Otherwise continue with the shot it wrote.
 
+   A failed compiled brief rule is a warning, not a finding (owner
+   decision, 2026-11-04): it prints a `warning` line, goes to the builder
+   and the record like a finding, and leaves the exit code alone, so it
+   never blocks the gate on its own. This holds until the rules' agreement
+   with the Opus critic has been measured on the bench; `--strict` turns
+   them into findings for that day.
+
    Detector findings are never put in front of the Sonnet spot check or
    the Opus critic: not in the prompt, not in the preamble, not in the
    attached files. A critic told what to look for anchors on it. The
    findings go to the builder and the design record only.
 
    The detector runs the same way as a Stop hook and in CI, where it exits 2
-   on findings (0 when clean, 1 on an error). It reports measurements and
-   findings and never scores.
+   on findings (0 when clean or warnings only, 1 on an error). It reports
+   measurements, findings and warnings and never scores.
 1. Screenshot. Normally this is the `--shot` PNG from step 0.5. When the
    detector could not run, shoot with `scripts/shot.sh` at the viewport
    size the surface was last shot at, and log the detector column as "not

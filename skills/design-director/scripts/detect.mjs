@@ -2,10 +2,15 @@
 // Deterministic design measurements for one page via ONE headless Chrome + CDP.
 //
 // Usage: node detect.mjs <url-or-file> [--brief <path.md>] [--previous <png>]
-//                        [--shot <out.png>] [--width 1280] [--json]
-//   exit 0  no findings
-//   exit 2  findings
+//                        [--shot <out.png>] [--width 1280] [--json] [--strict]
+//   exit 0  no findings (a failed compiled brief rule is a warning, not a finding)
+//   exit 2  findings; with --strict, a failed compiled rule counts as one
 //   exit 1  error (no Chrome, unreadable brief, page failed to load)
+//
+// Compiled brief rules warn only (owner decision, 2026-11-04): until their
+// agreement with the Opus critic has been measured on the bench, a failed
+// rule prints a warning line and leaves the exit code alone. --strict is
+// for the day that number exists.
 //
 // What it is: a measurer, not a critic. It opens the page, reads the rendered
 // DOM (colors, type, spacing, contrast, decoration) and the full-page PNG
@@ -36,7 +41,7 @@ import { inflateSync } from 'node:zlib'
 import { findChrome, launchChrome, connect } from './lib/chrome.mjs'
 
 const NO_CHROME = 'no Chrome/Chromium found; screenshot in the preview browser and describe it instead'
-const USAGE = 'usage: detect.mjs <url-or-file> [--brief <path.md>] [--previous <png>] [--shot <out.png>] [--width 1280] [--json]'
+const USAGE = 'usage: detect.mjs <url-or-file> [--brief <path.md>] [--previous <png>] [--shot <out.png>] [--width 1280] [--json] [--strict]'
 
 // ---------------------------------------------------------------- thresholds
 const T = {
@@ -590,8 +595,10 @@ function evalRule(rule, ctx) {
 }
 
 // -------------------------------------------------------------- findings
-function findings(page, brief, rules) {
-  const f = []
+// Returns { findings, warnings }. A failed compiled rule is a warning unless
+// strict, when it is a finding like any other.
+function findings(page, brief, rules, strict) {
+  const f = [], w = []
   const t = page.type
   if (t.tinyText.count) {
     const min = Math.min(...t.tinyText.samples.map((s) => s.px)), s = t.tinyText.samples[0]
@@ -616,17 +623,18 @@ function findings(page, brief, rules) {
     const o = page.colors.offPalette
     f.push({ id: 'off-palette', message: `${new Set(o.map((x) => x.hex)).size} color(s) outside the brief palette, e.g. ${o[0].hex} (${o[0].where})`, where: o[0].sample, count: o.length })
   }
-  for (const r of rules) if (r.status === 'fail') f.push({ id: 'rule-failed', rule: r.n, message: `rule ${r.n} failed: ${r.evidence}` })
-  return f
+  for (const r of rules) if (r.status === 'fail') (strict ? f : w).push({ id: 'rule-failed', rule: r.n, message: `rule ${r.n} failed: ${r.evidence}` })
+  return { findings: f, warnings: w }
 }
 
 // ------------------------------------------------------------------ CLI
 function parseArgs(argv) {
-  const o = { width: 1280, json: false, brief: null, previous: null, shot: null, src: null }
+  const o = { width: 1280, json: false, strict: false, brief: null, previous: null, shot: null, src: null }
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]
     const val = () => { if (i + 1 >= argv.length) throw new Error(`${a} needs a value`); return argv[++i] }
     if (a === '--json') o.json = true
+    else if (a === '--strict') o.strict = true
     else if (a === '--brief') o.brief = val()
     else if (a === '--previous') o.previous = val()
     else if (a === '--shot') o.shot = val()
@@ -724,27 +732,29 @@ async function main() {
   } catch (e) { console.error(`detect: screenshot analysis failed: ${e.message}`); return 1 }
 
   const rules = brief ? brief.rules.map((r) => evalRule(r, { page, palette, texts: raw.texts })) : []
-  const found = findings(page, brief, rules)
+  const { findings: found, warnings } = findings(page, brief, rules, opts.strict)
   const count = (s) => rules.filter((r) => r.status === s).length
   const summary = {
     findings: found.length,
+    warnings: warnings.length,
     rules: { passed: count('pass'), compiled: count('pass') + count('fail'), criticOnly: count('critic-only'), unparsed: count('unparsed') },
     unchanged: screenshot.previous ? screenshot.previous.unchanged : null,
   }
   const doc = {
-    version: 1, source: opts.src, width: opts.width, shot: opts.shot || null,
+    version: 1, source: opts.src, width: opts.width, shot: opts.shot || null, strict: opts.strict,
     page, screenshot,
     brief: brief ? { path: brief.path, palette: brief.palette, rules } : null,
-    findings: found, summary,
+    findings: found, warnings, summary,
   }
 
   if (opts.json) process.stdout.write(JSON.stringify(doc, null, 2) + '\n')
   else {
     const out = []
     for (const f of found) out.push(`finding  ${f.id}  ${f.message}${f.where ? `  [${f.where}]` : ''}`)
+    for (const w of warnings) out.push(`warning  ${w.id}  ${w.message}`)
     for (const r of rules) out.push(`rule ${r.n}  ${r.status}  ${r.evidence}`)
     const d = screenshot.previous ? screenshot.previous.distance : 'n/a'
-    out.push(`summary  ${found.length} findings · rules ${summary.rules.passed}/${summary.rules.compiled} · critic-only ${summary.rules.criticOnly} · hash distance ${d}`)
+    out.push(`summary  ${found.length} findings · ${warnings.length} warnings · rules ${summary.rules.passed}/${summary.rules.compiled} · critic-only ${summary.rules.criticOnly} · hash distance ${d}`)
     process.stdout.write(out.join('\n') + '\n')
   }
   return found.length ? 2 : 0
