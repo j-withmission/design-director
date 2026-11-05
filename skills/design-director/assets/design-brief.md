@@ -126,9 +126,14 @@ Stopped because: [baseline + 1 reached / two rounds without a point / plateau ov
 One row per spot check (`references/spot-check.md`). Pair verdict compares
 against the previous row's screenshot.
 
-| Date | Surface | Configuration | Pair verdict (better / same / worse, margin) | Rules passed | Top nudge | Applied? | Screenshot |
-|---|---|---|---|---|---|---|---|
-| | | | | | | | |
+| Date | Surface | Configuration | Pair verdict (better / same / worse, margin) | Rules passed | Detector | Top nudge | Applied? | Screenshot |
+|---|---|---|---|---|---|---|---|---|
+| | | | | | | | | |
+
+Detector is `scripts/detect.mjs`, run before the Sonnet call and written as
+findings · compiled rules passed/total (`0 · 3/3`); "skipped: unchanged" in
+the pair verdict column means the detector found the page unchanged since
+the previous shot and nothing to flag, so no model ran.
 
 ## Media generated
 

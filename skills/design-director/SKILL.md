@@ -25,7 +25,7 @@ anything else.
 
 | Tier | When | What runs | Model | Stops when | Measured cost |
 |---|---|---|---|---|---|
-| **Spot check** | Any task touched a screen; runs at the end, before "done" | Pairwise against the last shot, rules check against the brief, at most two nudges. No score. | `sonnet` | Always one call | ~10 s, 0.03 USD |
+| **Spot check** | Any task touched a screen; runs at the end, before "done" | Pairwise against the last shot, rules check against the brief, at most two nudges. No score. | `sonnet` | At most one call; none when the detector finds the page unchanged | ~10 s, 0.03 USD |
 | **Review** | A surface's baseline slipped: spot check escalated, or the user says "make this better" / "this looks off" | The critic loop below on the existing direction, three critic repeats per round, median score | `opus` critic, session model implements | Median ≥ baseline + 1, or two rounds without a full point | ~0.35 USD and 2 min per round |
 | **Redesign** | New surface, or the user wants the highest score the direction can reach | Reference brief, then Discover diverge (three seeded directions, each scored), then the critic loop to plateau | `fable` brief, `opus` critic, session model implements | Plateau: three rounds without a point, or 9/10 | ~3–5 USD for three directions plus four rounds |
 
@@ -436,6 +436,10 @@ In a repo that keeps decision records, design decisions go in `docs/design/`.
 
 Read `references/spot-check.md`. It starts with the brief check above:
 use the surface's brief, or ask once if it has none and no recorded decline.
+Next, `scripts/detect.mjs` takes the shot and measures the page in one
+Chrome launch, with no model call; on a page unchanged since the last shot
+with nothing to flag, it makes the Sonnet call unnecessary. Its findings go
+to the builder and the record and never reach a critic.
 Then one `sonnet` call at the end of any task that changed a screen, whether
 or not the skill was otherwise invoked (in bb,
 `scripts/bb-critics.sh --role spot --repeats 1`):
@@ -562,9 +566,9 @@ second build. So:
 - Don't run more than two implementers at once or launch a Chrome per agent;
   see Resource budget.
 - Don't hand the critic code, diffs, previous critiques, the inspiration
-  images, or a trends digest's sites and screenshots. It gets the
-  screenshot, the aesthetic sentence, the brief, and the pinned digest's
-  register tells.
+  images, detector findings, or a trends digest's sites and screenshots. It
+  gets the screenshot, the aesthetic sentence, the brief, and the pinned
+  digest's register tells.
 - Don't let a brief guess colors the code already defines. Collect the
   palette tokens and pass them to the brief writer.
 - Don't reuse a critic context across rounds or across repeats.
